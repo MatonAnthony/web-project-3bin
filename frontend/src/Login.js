@@ -79,7 +79,6 @@ const Login = React.createClass({
                                     placeholder={this.state.login}
                                     onChange={this.handleLoginChange}
                                 />
-                                <FormControl.Feedback />
 
                                 <ControlLabel>Password :</ControlLabel>
                                 <FormControl
@@ -88,13 +87,12 @@ const Login = React.createClass({
                                     placeholder={this.state.password}
                                     onChange={this.handlePasswordChange}
                                 />
-                                <FormControl.Feedback />
                             </FormGroup>
 
                             <Button
                                 type="submit"
                                 bsStyle="success"
-                                onChange={this.submitForm}
+                                onClick={this.submitForm}
                             > Submit </Button>
                         </form>
                     </Panel>
