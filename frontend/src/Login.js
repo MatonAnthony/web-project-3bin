@@ -2,6 +2,11 @@ import React from 'react';
 import { Panel, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import './Login.css';
 
+/*
+ * TODO : This is a temporary solution until further discussion
+ */
+const URL = 'http://localhost:3001';
+
 const Login = React.createClass({
     getInitialState() {
         return {
@@ -19,16 +24,42 @@ const Login = React.createClass({
     },
 
     handleLoginChange(event) {
-    this.setState({ login : event.target.value }, () => {
-        this.getValidationState();
-    });
-},
+        this.setState({ login : event.target.value }, () => {
+            this.getValidationState();
+        });
+    },
 
     handlePasswordChange(event) {
-    this.setState({ password : event.target.value }, () => {
-        this.getValidationState();
-    });
-},
+        this.setState({ password : event.target.value }, () => {
+            this.getValidationState();
+        });
+    },
+
+    /*
+     * TODO : Will require a refactor once the const URL refactor is settled
+     */
+    submitForm() {
+        let headers = new Headers({
+            "Content-Type": "application/json"
+        });
+        fetch(URL + '/authenticate', {
+            method: 'POST',
+            body: this.state,
+            headers: headers
+        }).then((response) => {
+           let contentType = response.headers.get("content-type");
+           if(contentType && contentType.indexOf("application/json") !== -1) {
+               return response.json().then((json, response) => {
+                   if(response.ok) {
+                       /* JSON Processing successfull connection */
+                       /* TODO : Finish the processing block based on mock or backend */
+                   } else {
+                       /* JSON Processing + unsucessfull redirection */
+                   }
+               })
+           }
+        });
+    },
 
     render() {
         let title = "Login";
@@ -63,6 +94,7 @@ const Login = React.createClass({
                             <Button
                                 type="submit"
                                 bsStyle="success"
+                                onChange={this.submitForm}
                             > Submit </Button>
                         </form>
                     </Panel>
