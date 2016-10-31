@@ -1,0 +1,21 @@
+.panel-heading {
+    text-align: center;
+    font-size: 24px;
+}
+
+.control-label {
+    padding-top: 1em;
+}
+
+.btn-success {
+    width: 100%;
+    font-size: 20px;
+}
+
+.form-control-feedback.glyphicon {
+    display: none;
+}
+.vertical-centering {
+    margin-top: 25%;
+    margin-bottom: 25%;
+}
