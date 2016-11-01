@@ -90,7 +90,7 @@ const Login = React.createClass({
                             </FormGroup>
 
                             <Button
-                                type="submit"
+                                type="button"
                                 bsStyle="success"
                                 onClick={this.submitForm}
                             > Submit </Button>
