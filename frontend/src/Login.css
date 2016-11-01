@@ -13,6 +13,9 @@
 }
 
 .vertical-centering {
-    margin-top: 25%;
-    margin-bottom: 25%;
+    /* http://www.alsacreations.com/tuto/lire/1032-comment-centrer-verticalement-sur-tous-les-navigateurs.html
+     * I don't know why but 50vh was too much, I adjusted to 35vh (so around 1/3 of the viewport)
+     */
+    margin-top: 35vh;
+    transform: translateY(-50)%;
 }
