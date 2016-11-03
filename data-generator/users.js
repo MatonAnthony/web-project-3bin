@@ -15,13 +15,17 @@ function generateUsers(numberOfUsers) {
         let email = faker.internet.email();
         let firstname = faker.name.firstName();
         let lastname = faker.name.lastName();
+        let lastConnection = faker.date.past();
+        let permissions = [];
 
         users.push({
             "pseudo": pseudo,
             "password": password,
             "email": email,
             "firstname": firstname,
-            "lastname": lastname
+            "lastname": lastname,
+            "lastConnection": lastConnection,
+            "permissions" : permissions
         });
     }
 
