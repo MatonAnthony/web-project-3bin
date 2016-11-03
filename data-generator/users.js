@@ -1,14 +1,19 @@
 /*
  * Generate a set of fake user used by our API mocker (json-server)
  */
-var faker = require('faker');
+let faker = require('faker');
 /*
  * Ask faker to give us a french like dataset
  */
 faker.locale = 'fr';
 
+/**
+ * Generate a dataset of User
+ * @param {Number} numberOfUsers number of user to generate in the dataset
+ * @return {Object} return a dataset full of users.
+ */
 function generateUsers(numberOfUsers) {
-    var users = [];
+    let users = [];
     for(let i = 0; i < numberOfUsers; i++) {
         let pseudo = faker.internet.userName();
         let password = faker.internet.password();
@@ -19,17 +24,17 @@ function generateUsers(numberOfUsers) {
         let permissions = [];
 
         users.push({
-            "pseudo": pseudo,
-            "password": password,
-            "email": email,
-            "firstname": firstname,
-            "lastname": lastname,
-            "lastConnection": lastConnection,
-            "permissions" : permissions
+            'pseudo': pseudo,
+            'password': password,
+            'email': email,
+            'firstname': firstname,
+            'lastname': lastname,
+            'lastConnection': lastConnection,
+            'permissions': permissions,
         });
     }
 
-    return users
+    return users;
 }
 
 module.exports = generateUsers;

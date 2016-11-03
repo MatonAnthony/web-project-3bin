@@ -1,18 +1,21 @@
 /*
  * Generate a set of fake user used by our API mocker (json-server)
  */
-var faker = require('faker');
-var users = require('./users.js');
+let faker = require('faker');
+let users = require('./users.js');
 /*
  * Ask faker to give us a french like dataset
  */
 faker.locale = 'fr';
 
-/*
+/**
  * TODO : Wait on @mtechy to finish ticket and payment
+ * Generate a dataset of sells
+ * @param {Number} numberOfSells of sells put on the dataset
+ * @return {Object} Dataset of sells
  */
 function generateSells(numberOfSells) {
-    var sells = [];
+    let sells = [];
     for(let i = 0; i < numberOfSells; i++) {
         let id = i;
         let ticket = {}; // Supposed to be a ticket object
@@ -23,12 +26,12 @@ function generateSells(numberOfSells) {
 
 
         sells.push({
-            "id": id,
-            "ticket": ticket,
-            "amount": amount,
-            "payment": payment,
-            "date": date,
-            "seller": seller
+            'id': id,
+            'ticket': ticket,
+            'amount': amount,
+            'payment': payment,
+            'date': date,
+            'seller': seller,
         });
     }
 
