@@ -1,0 +1,22 @@
+# Ignore specific path from eslint checking
+
+# Project based files
+*.md
+LICENSE
+README
+**/*.html
+**/*.css
+
+# Files from npm
+node_modules/*
+**/node_modules
+**/package.json
+**/*.log
+
+# Files from babel / webpack
+*-compiled
+*-test
+
+**/*-test.js
+**/*-compiled.js
+

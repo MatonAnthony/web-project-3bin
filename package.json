@@ -1,0 +1,23 @@
+{
+  "name": "web-project-3bin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatonAnthony/web-project-3bin.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MatonAnthony/web-project-3bin/issues"
+  },
+  "homepage": "https://github.com/MatonAnthony/web-project-3bin#readme",
+  "devDependencies": {
+    "eslint": "^3.9.1",
+    "eslint-config-google": "^0.7.0"
+  }
+}
