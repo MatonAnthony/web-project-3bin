@@ -41,3 +41,7 @@ Thumbs.db
 
 #idea folders
 .idea
+
+# Compiled files
+*-compiled*
+*-test*
