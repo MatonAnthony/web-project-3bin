@@ -1,9 +1,7 @@
-/* eslint-disable */
-
 /*
  * Generate a set of fake user used by our API mocker (json-server)
  */
-let faker = require('faker');
+const faker = require('faker');
 /*
  * Ask faker to give us a french like dataset
  */
@@ -17,6 +15,8 @@ function generateProducts(numberOfProducts) {
         let productName = faker.commerce.productName();
         let product = faker.commerce.product();
         let price = faker.commerce.price();
+        let product_category = faker.lorem.word();
+        let tva = faker.random.number();
 
         products.push({
             'id': id,
@@ -24,10 +24,11 @@ function generateProducts(numberOfProducts) {
             'productName': productName,
             'product': product,
             'price': price,
+            'tva': tva,
+            'category': product_category,
         });
     }
 
     return products;
 }
-
 module.exports = generateProducts;
