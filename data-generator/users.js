@@ -1,7 +1,7 @@
 /*
  * Generate a set of fake user used by our API mocker (json-server)
  */
-let faker = require('faker');
+const faker = require('faker');
 /*
  * Ask faker to give us a french like dataset
  */

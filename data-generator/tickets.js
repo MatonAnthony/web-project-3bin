@@ -1,20 +1,25 @@
 /*
  * Generate a set of fake tickets used by the API mocker (json-server)
  */
-var faker = require('faker');
-var users = require('./users.js');
-var products = require('./products.js');
-var payments = require('./payments.js');
+const faker = require('faker');
+const users = require('./users.js');
+const products = require('./products.js');
+const payments = require('./payments.js');
 
 /*
  * Ask faker to give a french like dataset
  */
 faker.locale = 'fr';
 
-function generateTickets(numberofTickets){
+/**
+ * Generate a dataset of tickets
+ * @param {Number} numberofTickets number of tickets to generate in the dataset
+ * @return {Object} return a dataset full of tickets.
+ */
+function generateTickets(numberofTickets) {
     var tickets = [];
 
-    for(let i = 0; i < numberofTickets; i++){
+    for(let i = 0; i < numberofTickets; i++) {
 
         let id = faker.random.number();
         let date = faker.date.recent();
@@ -27,15 +32,15 @@ function generateTickets(numberofTickets){
         let payment = payments(1).pop();
 
         tickets.push({
-            "id" :id,
-            "date" :date,
-            "cashier" :user,
-            "products" :productList,
-            "discount" :discount,
-            "tax" :tax,
-            "total" :total, 
-            "client" :client,
-            "payment" :payment
+            'id' : id,
+            'date' : date,
+            'cashier' : user,
+            'products' : productList,
+            'discount' : discount,
+            'tax' : tax,
+            'total' : total, 
+            'client' : client,
+            'payment' : payment,
         });
 
     }
