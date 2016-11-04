@@ -1,18 +1,18 @@
 /*
-    * Generate a set of fake payments used by the API mocker (json-server)
-*/
+ * Generate a set of fake payments used by the API mocker (json-server)
+ */
 var faker = require('faker');
 var users = require('./users.js');
 
 /*
-* Ask faker to give a french like dataset
-*/
+ * Ask faker to give a french like dataset
+ */
 faker.locale = 'fr';
 
 function generatePayments(numberofPayments){
     var payments = [];
 
-    for(let i =0; i < numberofPayments; i++){
+    for(let i = 0; i < numberofPayments; i++){
 
         //randomize the type of payments
         let randomType = Math.floor((Math.random()*4)+1);
