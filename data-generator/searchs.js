@@ -8,15 +8,21 @@ const faker = require('faker');
  */
 faker.locale = 'fr';
 
+/**
+ * Generate a dataset of searchs
+ * @param {Number} numberOfSearchs number of searchs to
+ * generate in the dataset.
+ * @return {Object} return a dataset full of searchs.
+ */
 function generateSearchs(numberOfSearchs) {
     let searchs = [];
     for(let i = 0; i < numberOfSearchs; i++) {
         let id = faker.random.number();
-        let search_words = faker.lorem.words();
+        let searchWords = faker.lorem.words();
 
         searchs.push({
             'id': id,
-            'search': search_words,
+            'search': searchWords,
         });
     }
 

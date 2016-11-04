@@ -7,6 +7,12 @@ const faker = require('faker');
  */
 faker.locale = 'fr';
 
+/**
+ * Generate a dataset of products
+ * @param {Number} numberOfProducts number of products to
+ * generate in the dataset.
+ * @return {Object} return a dataset full of products.
+ */
 function generateProducts(numberOfProducts) {
     let products = [];
     for(let i = 0; i < numberOfProducts; i++) {
@@ -15,7 +21,7 @@ function generateProducts(numberOfProducts) {
         let productName = faker.commerce.productName();
         let product = faker.commerce.product();
         let price = faker.commerce.price();
-        let product_category = faker.lorem.word();
+        let productCategory = faker.lorem.word();
         let tva = faker.random.number();
 
         products.push({
@@ -25,7 +31,7 @@ function generateProducts(numberOfProducts) {
             'product': product,
             'price': price,
             'tva': tva,
-            'category': product_category,
+            'category': productCategory,
         });
     }
 
