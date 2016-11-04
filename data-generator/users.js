@@ -14,7 +14,7 @@ faker.locale = 'fr';
  */
 function generateUsers(numberOfUsers) {
     let users = [];
-    for(let i = 0; i < numberOfUsers; i++) {
+    for (let i = 0; i < numberOfUsers; i++) {
         let pseudo = faker.internet.userName();
         let password = faker.internet.password();
         let email = faker.internet.email();
