@@ -6,6 +6,8 @@ const products = require('./products.js');
 const tickets = require('./tickets.js');
 const payments = require('./payments.js');
 const searchs = require('./searchs.js');
+const accountancy = require('./accountancy.js');
+const registeredProducts = require('./registeredProducts.js');
 
 /**
  * Generate a fake dataset to mock the API.
@@ -18,6 +20,8 @@ function generate() {
     dataset.tickets = tickets(10);
     dataset.payments = payments(5);
     dataset.searchs = searchs(5);
+    dataset.accountancies = accountancy(10, 500000);
+    dataset.registeredProducts = registeredProducts(20);
     return dataset;
 }
 
