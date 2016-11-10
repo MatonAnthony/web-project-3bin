@@ -7,5 +7,11 @@
         "ecmaFeatures": {
             "jsx": true
         }
+    },
+    "rules": {
+        "spaced-comment": "off",
+        "no-trailing-spaces": "off",
+        "new-cap": "off",
+        "linebreak-style": "off"
     }
 }
