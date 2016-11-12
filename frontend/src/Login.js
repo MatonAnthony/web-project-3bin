@@ -21,9 +21,8 @@ const Login = React.createClass({
     getValidationState() {
         const login = this.state.login;
         const password = this.state.password;
-        const cardNumber = this.state.cardNumber;
 
-        if((login.length <= 0 || password.length <= 0) return 'error';
+        if(login.length <= 0 || password.length <= 0) return 'error';
 
         return 'success';
     },
