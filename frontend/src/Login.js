@@ -23,9 +23,7 @@ const Login = React.createClass({
         const password = this.state.password;
         const cardNumber = this.state.cardNumber;
 
-        if((login.length <= 0 || password.length <= 0)
-            && cardNumber === -1 && typeof cardNumber !== 'number')
-            return 'error';
+        if((login.length <= 0 || password.length <= 0) return 'error';
 
         return 'success';
     },
