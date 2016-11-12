@@ -1,6 +1,6 @@
 import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
-import {FormControl, Button} from 'react-bootstrap';
+import {FormControl, Button, InputGroup} from 'react-bootstrap';
 import './Login.css';
 
 /*
@@ -13,14 +13,18 @@ const Login = React.createClass({
         return {
             login: 'pseudo',
             password: 'password',
+            cardNumber: -1,
         };
     },
 
     getValidationState() {
         const login = this.state.login;
         const password = this.state.password;
+        const cardNumber = this.state.cardNumber;
 
-        if(login.length <= 0 || password.length <= 0) return 'error';
+        if((login.length <= 0 || password.length <= 0)
+            && cardNumber === -1 && typeof cardNumber !== 'number') return 'error';
+
         return 'success';
     },
 
@@ -36,6 +40,17 @@ const Login = React.createClass({
         });
     },
 
+    scanCard(event) {
+        /*
+         * TODO : Add the code regarding a card scanning by the machine.
+         * Assuming we get a Number
+         */
+        let readValue = '00000000';
+        this.setState({cardNumber: readValue}, () => {
+            this.getValidationState();
+        });
+    },
+    
     /*
      * TODO : Will require a refactor once the const URL refactor is settled
      */
@@ -90,6 +105,18 @@ const Login = React.createClass({
                                     placeholder={this.state.password}
                                     onChange={this.handlePasswordChange}
                                 />
+
+                                <p>Or connect using the card scanner :</p>
+
+                                <ControlLabel>Card Number :</ControlLabel>
+                                <InputGroup>
+                                    <InputGroup.Button>
+                                        <Button
+                                            onClick={this.scanCard}
+                                        >Scan</Button>
+                                    </InputGroup.Button>
+                                    <FormControl type="text" />
+                                </InputGroup>
                             </FormGroup>
 
                             <Button
