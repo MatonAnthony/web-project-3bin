@@ -26,6 +26,7 @@ const Register = React.createClass({
         const lastname = this.state.lastname;
         const cardNumber = this.state.cardNumber;
 
+
         /*
          * TODO: Decide on a proper way to validate complex forms
          * Thinking about passing event.target as a parameter in the handler
@@ -97,7 +98,6 @@ const Register = React.createClass({
                                 <ControlLabel>Username :</ControlLabel>
                                 <FormControl
                                     type="text"
-                                    value={this.state.login}
                                     placeholder={this.state.login}
                                     onChange={this.handleLoginChange}
                                 />
@@ -105,7 +105,6 @@ const Register = React.createClass({
                                 <ControlLabel>Password :</ControlLabel>
                                 <FormControl
                                     type="password"
-                                    value={this.state.password}
                                     placeholder={this.state.password}
                                     onChange={this.handlePasswordChange}
                                 />
@@ -113,7 +112,6 @@ const Register = React.createClass({
                                 <ControlLabel>Email :</ControlLabel>
                                 <FormControl
                                     type="email"
-                                    value={this.state.email}
                                     placeholder={emailPlaceholder}
                                     onChange={this.handleEmailChange}
                                 />
@@ -123,7 +121,6 @@ const Register = React.createClass({
                                 <ControlLabel>Firstname :</ControlLabel>
                                 <FormControl
                                     type="text"
-                                    value={this.state.firstname}
                                     placeholder="firstname"
                                     onChange={this.handleFirstnameChange}
                                 />
@@ -131,7 +128,6 @@ const Register = React.createClass({
                                 <ControlLabel>Lastname :</ControlLabel>
                                 <FormControl
                                     type="text"
-                                    value={this.state.lastname}
                                     placeholder="lastname"
                                     onChange={this.handleLastNameChange}
                                 />
