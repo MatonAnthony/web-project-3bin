@@ -40,6 +40,10 @@ const Login = React.createClass({
         });
     },
 
+    /**
+     * Scan the card and fill the form with the number coming from the EAN barcode
+     * @param {Event} event Clicked on the scanning button.
+     */
     scanCard(event) {
         /*
          * TODO : Add the code regarding a card scanning by the machine.
@@ -50,7 +54,7 @@ const Login = React.createClass({
             this.getValidationState();
         });
     },
-    
+
     /*
      * TODO : Will require a refactor once the const URL refactor is settled
      */
@@ -108,6 +112,11 @@ const Login = React.createClass({
 
                                 <p>Or connect using the card scanner :</p>
 
+                                {/*
+                                 * Since this component is used both in registration
+                                 * and login. I'm wondering wether or not making it
+                                 * a specific separate component.
+                                 */}
                                 <ControlLabel>Card Number :</ControlLabel>
                                 <InputGroup>
                                     <InputGroup.Button>
