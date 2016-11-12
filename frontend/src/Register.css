@@ -1,0 +1,36 @@
+p {
+    margin-top: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.panel-heading {
+    text-align: center;
+    font-size: 24px;
+}
+
+.control-label {
+    padding-top: 1em;
+}
+
+.btn-success {
+    width: 100%;
+    font-size: 20px;
+}
+
+@media screen and (min-height: 1024px) {
+    .vertical-centering {
+        /* http://www.alsacreations.com/tuto/lire/1032-comment-centrer-verticalement-sur-tous-les-navigateurs.html
+         * I don't know why but 50vh was too much, I adjusted to 20vh (so around 1/5 of the viewport)
+         */
+        margin-top: 20vh;
+        transform: translateY(-50)%;
+    }
+}
+
+@media screen and (max-height: 1024px) {
+    .vertical-centering {
+        margin-top: 1.5vh;
+    }
+}
