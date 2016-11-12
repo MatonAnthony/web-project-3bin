@@ -1,6 +1,7 @@
 import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button, InputGroup} from 'react-bootstrap';
+import CardScanner from './CardScanner';
 import './Register.css';
 
 const URL = 'http://localhost:3001';
@@ -135,20 +136,9 @@ const Register = React.createClass({
                                     onChange={this.handleLastNameChange}
                                 />
 
-                                {/*
-                                 * Since this component is used both in registration
-                                 * and login. I'm wondering wether or not making it
-                                 * a specific separate component.
-                                 */}
                                 <ControlLabel>Card Number :</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Button>
-                                        <Button
-                                            onClick={this.scanCard}
-                                        >Scan</Button>
-                                    </InputGroup.Button>
-                                    <FormControl type="text" />
-                                </InputGroup>
+                                <CardScanner />
+
                             </FormGroup>
 
                             <Button

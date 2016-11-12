@@ -1,6 +1,7 @@
 import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button, InputGroup} from 'react-bootstrap';
+import CardScanner from './CardScanner';
 import './Login.css';
 
 /*
@@ -36,21 +37,6 @@ const Login = React.createClass({
 
     handlePasswordChange(event) {
         this.setState({password: event.target.value}, () => {
-            this.getValidationState();
-        });
-    },
-
-    /**
-     * Scan the card and fill the form with the number coming from the EAN barcode
-     * @param {Event} event Clicked on the scanning button.
-     */
-    scanCard(event) {
-        /*
-         * TODO : Add the code regarding a card scanning by the machine.
-         * Assuming we get a Number
-         */
-        let readValue = '00000000';
-        this.setState({cardNumber: readValue}, () => {
             this.getValidationState();
         });
     },
@@ -112,20 +98,7 @@ const Login = React.createClass({
 
                                 <p>Or connect using the card scanner :</p>
 
-                                {/*
-                                 * Since this component is used both in registration
-                                 * and login. I'm wondering wether or not making it
-                                 * a specific separate component.
-                                 */}
-                                <ControlLabel>Card Number :</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Button>
-                                        <Button
-                                            onClick={this.scanCard}
-                                        >Scan</Button>
-                                    </InputGroup.Button>
-                                    <FormControl type="text" />
-                                </InputGroup>
+                                <CardScanner />
                             </FormGroup>
 
                             <Button
