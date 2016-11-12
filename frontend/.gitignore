@@ -16,6 +16,8 @@ npm-debug.log
 
 # compiled file
 *-compiled*
+*-test*
 
 # IDEA related files
 .idea
+
