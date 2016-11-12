@@ -1,6 +1,6 @@
 import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
-import {FormControl, Button, InputGroup} from 'react-bootstrap';
+import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
 import './Login.css';
 
@@ -24,7 +24,8 @@ const Login = React.createClass({
         const cardNumber = this.state.cardNumber;
 
         if((login.length <= 0 || password.length <= 0)
-            && cardNumber === -1 && typeof cardNumber !== 'number') return 'error';
+            && cardNumber === -1 && typeof cardNumber !== 'number')
+            return 'error';
 
         return 'success';
     },

@@ -4,7 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import './index.css';
 
-let isLogged = false;
+let isLogged = true;
 if(isLogged) {
     ReactDOM.render(
         <Login />,

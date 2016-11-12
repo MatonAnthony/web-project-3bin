@@ -1,6 +1,6 @@
 import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
-import {FormControl, Button, InputGroup} from 'react-bootstrap';
+import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
 import './Register.css';
 
@@ -9,50 +9,38 @@ const URL = 'http://localhost:3001';
 const Register = React.createClass({
     getInitialState() {
         return {
-            "login": "",
-            "password": "",
-            "email": "",
-            "firstname": "",
-            "lastname": "",
-            "cardNumber": "",
+            'login': '',
+            'password': '',
+            'email': '',
+            'firstname': '',
+            'lastname': '',
+            'cardNumber': '',
         };
     },
 
     getValidationState() {
+        /* eslint-disable no-unused-vars */
         const login = this.state.login;
         const password = this.state.password;
         const email = this.state.email;
         const firstname = this.state.firstname;
         const lastname = this.state.lastname;
         const cardNumber = this.state.cardNumber;
-
+        /* eslint-enable no-unused-vars */
 
         /*
          * TODO: Decide on a proper way to validate complex forms
          * Thinking about passing event.target as a parameter in the handler
-         * and using it to change the validationState value for specific part of the form.
+         * and using it to change the validationState value for specific part
+         * of the form.
          */
 
         return 'success';
     },
 
-    /**
-     * Scan the card and fill the form with the number coming from the EAN barcode
-     * @param {Event} event Clicked on the scanning button.
-     */
-    scanCard(event) {
-        /*
-         * TODO : Add the code regarding a card scanning by the machine.
-         * Assuming we get a Number
-         */
-        let readValue = '00000000';
-        this.setState({cardNumber: readValue}, () => {
-            this.getValidationState();
-        });
-    },
-
     /*
-     * TODO: Will require a refactor once the API design is done and URL is settled
+     * TODO: Will require a refactor once the API design is done
+     * and URL is settled
      */
     submitForm() {
         let headers = new Headers({
@@ -70,7 +58,8 @@ const Register = React.createClass({
                     if(response.ok) {
                         /*
                          * JSON Processing successful registration
-                         * TODO: Finish the redirection block based on Application Design
+                         * TODO: Finish the redirection block based
+                         * on Application Design
                          */
                     } else {
                         /*
@@ -146,8 +135,8 @@ const Register = React.createClass({
                     </Panel>
                 </div>
             </div>
-        )
-    }
+        );
+    },
 
 });
 

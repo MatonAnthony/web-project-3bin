@@ -1,6 +1,5 @@
 import React from 'react';
-import {FormGroup, ControlLabel, InputGroup, Button} from 'react-bootstrap';
-import {FormControl} from 'react-bootstrap';
+import {FormControl, InputGroup, Button} from 'react-bootstrap';
 
 
 const CardScanner = React.createClass({
@@ -19,13 +18,14 @@ const CardScanner = React.createClass({
     },
 
     handleCardNumberChange(event) {
-        this.setState({cardNumber : event.target.value}, () => {
+        this.setState({cardNumber: event.target.value}, () => {
             this.getValidationState();
-        })
+        });
     },
 
     /**
-     * Scan the card and fill the form with the number coming from the EAN barcode
+     * Scan the card and fill the form with the number coming
+     * from the EAN barcode.
      * @param {Event} event Clicked on the scanning button.
      */
     scanCard(event) {
@@ -40,7 +40,6 @@ const CardScanner = React.createClass({
     },
 
     render() {
-
         return (
             <div>
                 <InputGroup>
