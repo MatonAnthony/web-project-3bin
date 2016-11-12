@@ -1,0 +1,17 @@
+{
+    "extends": "google",
+    "installedESLint": true,
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "spaced-comment": "off",
+        "no-trailing-spaces": "off",
+        "new-cap": "off",
+        "linebreak-style": "off"
+    }
+}

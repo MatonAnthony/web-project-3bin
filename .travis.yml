@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+    - stable
+install:
+    - npm install --dev
+    - npm install -g codecov istanbul
+script:
+    - ./node_modules/.bin/eslint *
+    - cd backend && istanbul cover ./../node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+    - codecov --token=0d0fb920-db93-41e0-9566-65ed3eaa2143
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 0d0fb920-db93-41e0-9566-65ed3eaa2143
+
