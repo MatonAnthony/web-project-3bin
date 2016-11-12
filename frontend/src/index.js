@@ -5,7 +5,7 @@ import Login from './Login';
 import './index.css';
 
 let isLogged = false;
-if(isLogged){
+if(isLogged) {
     ReactDOM.render(
         <App />,
         document.getElementById('root')

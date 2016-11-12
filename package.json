@@ -26,5 +26,6 @@
     "supertest": "^2.0.1"
   },
   "dependencies": {
+    "eslint-plugin-react": "^6.6.0"
   }
 }

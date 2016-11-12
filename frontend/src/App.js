@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/**
+ * App react Component it defines our main window
+ */
 class App extends Component {
+  /**
+   * Render the App component
+   * @return {Component} the App Component rendered
+   */
   render() {
     return (
       <div className="App">

@@ -1,5 +1,4 @@
 {
-    "extends": "google",
     "installedESLint": true,
     "parserOptions": {
         "ecmaVersion": 6,
@@ -13,5 +12,11 @@
         "no-trailing-spaces": "off",
         "new-cap": "off",
         "linebreak-style": "off"
-    }
+    },
+    "plugins": [
+        "react"
+    ],
+    "extends": [
+        "google", "plugin:react/recommended"
+    ]
 }
