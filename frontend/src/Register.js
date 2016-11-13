@@ -1,4 +1,4 @@
-import React from 'react';
+%simport React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
@@ -135,6 +135,7 @@ const Register = React.createClass({
                             <Button
                                 type="button"
                                 bsStyle="success"
+                                className="register-btn"
                                 onClick={this.submitForm}
                             > Register </Button>
                         </form>
