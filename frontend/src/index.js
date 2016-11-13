@@ -4,6 +4,9 @@ import Login from './Login';
 import Register from './Register';
 import './index.css';
 
+/*
+ * TODO : Design Frontend architecture
+ */
 let isLogged = true;
 if(isLogged) {
     ReactDOM.render(
