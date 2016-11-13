@@ -108,6 +108,7 @@ const Login = React.createClass({
                             <Button
                                 type="button"
                                 bsStyle="success"
+                                className="login-btn"
                                 onClick={this.submitForm}
                             > Submit </Button>
                         </form>
