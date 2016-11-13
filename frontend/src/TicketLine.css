@@ -1,0 +1,10 @@
+.margin{
+    margin-right: 5px;
+}
+.inline-block{
+    display: inline-block;
+}
+
+.align-right{
+    float: right;
+}
