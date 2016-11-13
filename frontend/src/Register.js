@@ -1,4 +1,4 @@
-%simport React from 'react';
+import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
