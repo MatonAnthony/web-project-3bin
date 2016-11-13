@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import Login from './Login';
+import Register from './Register';
 import './index.css';
 
-let isLogged = false;
+/*
+ * TODO : Design Frontend architecture
+ */
+let isLogged = true;
 if(isLogged) {
     ReactDOM.render(
-        <App />,
+        <Login />,
         document.getElementById('root')
     );
 } else {
     ReactDOM.render(
-        <Login />,
+        <Register />,
         document.getElementById('root')
     );
 }
