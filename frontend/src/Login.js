@@ -1,6 +1,7 @@
 import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button} from 'react-bootstrap';
+import CardScanner from './CardScanner';
 import './Login.css';
 
 /*
@@ -13,6 +14,7 @@ const Login = React.createClass({
         return {
             login: 'pseudo',
             password: 'password',
+            cardNumber: -1,
         };
     },
 
@@ -21,6 +23,7 @@ const Login = React.createClass({
         const password = this.state.password;
 
         if(login.length <= 0 || password.length <= 0) return 'error';
+
         return 'success';
     },
 
@@ -34,6 +37,10 @@ const Login = React.createClass({
         this.setState({password: event.target.value}, () => {
             this.getValidationState();
         });
+    },
+
+    handleCardScannerChange(number) {
+        this.setState({cardNumber: number});
     },
 
     /*
@@ -89,6 +96,12 @@ const Login = React.createClass({
                                     value={this.state.password}
                                     placeholder={this.state.password}
                                     onChange={this.handlePasswordChange}
+                                />
+
+                                <p>Or connect using the card scanner :</p>
+
+                                <CardScanner 
+                                    onChange={this.handleCardScannerChange} 
                                 />
                             </FormGroup>
 
