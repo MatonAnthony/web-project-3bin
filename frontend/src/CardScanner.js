@@ -6,13 +6,13 @@ const CardScanner = React.createClass({
 
     getInitialState() {
         return {
-            cardNumber: -1,
+          cardNumber: null,
         };
     },
 
     getValidationState() {
         const cardNumber = this.state.cardNumber;
-        if(cardNumber === -1 || typeof cardNumber !== 'number') return 'error';
+        if(typeof cardNumber !== 'number') return 'error';
 
         return 'success';
     },
