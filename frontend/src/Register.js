@@ -18,6 +18,10 @@ const Register = React.createClass({
         };
     },
 
+    handleScannerCardChange(number) {
+        this.setState({cardNumber: number});
+    },
+
     getValidationState() {
         /* eslint-disable no-unused-vars */
         const login = this.state.login;
@@ -122,7 +126,9 @@ const Register = React.createClass({
                                 />
 
                                 <ControlLabel>Card Number :</ControlLabel>
-                                <CardScanner />
+                                <CardScanner 
+                                    onChange={this.handleScannerCardChange}
+                                />
 
                             </FormGroup>
 

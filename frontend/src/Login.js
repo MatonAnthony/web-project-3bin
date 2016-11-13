@@ -39,6 +39,10 @@ const Login = React.createClass({
         });
     },
 
+    handleCardScannerChange(number) {
+        this.setState({cardNumber: number});
+    },
+
     /*
      * TODO : Will require a refactor once the const URL refactor is settled
      */
@@ -96,7 +100,9 @@ const Login = React.createClass({
 
                                 <p>Or connect using the card scanner :</p>
 
-                                <CardScanner />
+                                <CardScanner 
+                                    onChange={this.handleCardScannerChange} 
+                                />
                             </FormGroup>
 
                             <Button

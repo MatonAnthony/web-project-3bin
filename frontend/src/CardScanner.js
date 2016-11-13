@@ -3,14 +3,26 @@ import {FormControl, InputGroup, Button} from 'react-bootstrap';
 
 
 const CardScanner = React.createClass({
-
+    
     getInitialState() {
         return {
           cardNumber: null,
         };
     },
+    
+    propTypes: {
+        onChange: React.PropTypes.func,
+    },
 
-    getValidationState() {
+    /**
+     * This method is accessible by ref to transmit data to the parent
+     * @return {Number} card number
+     */
+    getCardNumber() {
+        return this.state.cardNumber;   
+    },
+
+    getValidationState() { 
         const cardNumber = this.state.cardNumber;
         if(typeof cardNumber !== 'number') return 'error';
 
@@ -21,6 +33,7 @@ const CardScanner = React.createClass({
         this.setState({cardNumber: event.target.value}, () => {
             this.getValidationState();
         });
+        this.props.onChange(event.target.value);
     },
 
     /**
@@ -48,7 +61,10 @@ const CardScanner = React.createClass({
                             onClick={this.scanCard}
                         >Scan</Button>
                     </InputGroup.Button>
-                    <FormControl type="text" />
+                    <FormControl 
+                        type="text"
+                        onChange={this.handleCardNumberChange}
+                    />
                 </InputGroup>
             </div>
         );
