@@ -29,8 +29,12 @@ const Menubar = React.createClass({
                     <ul className="Menubar-menu">
                         <div className="">
                             <li className="Menubar-name">login name</li>
-                            <li className="Menubar-date"><Time value={this.state.now} format="DD/MM/YYYY" /></li>
-                            <li className="Menubar-time"><Time value={this.state.now} format="HH:mm:ss" /></li>
+                            <li className="Menubar-date">
+								<Time value={this.state.now} format="DD/MM/YYYY" />
+							</li>
+                            <li className="Menubar-time">
+								<Time value={this.state.now} format="HH:mm:ss" />
+							</li>
                         </div>
                     </ul>
                 </div>
