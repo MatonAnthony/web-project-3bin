@@ -1,10 +1,10 @@
-.margin{
+.ticketLine-margin{
     margin-right: 5px;
 }
-.inline-block{
+.ticketLine-inline-block{
     display: inline-block;
 }
 
-.align-right{
+.ticketLine-align-right{
     float: right;
 }

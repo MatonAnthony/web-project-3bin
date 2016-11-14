@@ -1,7 +1,6 @@
 .panel-alignment{
     display: inline-block;
 }
-
-.ticketButton{
-    margin-right: 4%;
+.ticket-align-right{
+    float: right;
 }

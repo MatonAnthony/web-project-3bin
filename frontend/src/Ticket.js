@@ -3,33 +3,42 @@ import {Panel, Button} from 'react-bootstrap';
 import TicketLine from './TicketLine';
 import './Ticket.css';
 
-/*
- * TODO : This is a temporary solution until further discussion
- */
-
 const Ticket = React.createClass({
 
+    getInitialState() {
+        return {
+            ticketList: this.props.ticketList,
+        };
+    },
+
+    propTypes: {
+      ticketList: React.PropTypes.array.isRequired,
+    },
+
+    clearList() {
+        this.setState({ticketList: []});
+    },
+
+    initiatePayment() {
+        //TODO : initiate the payment process
+    },
 
     render() {
-        for (let i=0; i<3; i++) {
-
+        let list = [];
+        for (let i = 0; i<this.state.ticketList.length; i++) {
+            list.push(<TicketLine key={i} product={this.state.ticketList[i]}/>);
         }
 
         return (
             <Panel className="panel-alignment">
-                <TicketLine productName="Moufles"
-                            quantity="12" price="100"/>
-                <TicketLine productName="Moufles"
-                            quantity="12" price="100"/>
-                <TicketLine productName="Moufles"
-                            quantity="12" price="100"/>
+                {list}
                 <Panel>
-                    <Button className="ticketButton" bsStyle="success"
-                            bsSize="large">
+                    <Button bsStyle="success" bsSize="large"
+                            onClick={this.initiatePayment}>
                         Pay
                     </Button>
-                    <Button bsStyle="danger" bsSize="large"
-                            >
+                    <Button className="ticket-align-right" bsStyle="danger"
+                            bsSize="large" onClick={this.clearList}>
                         Clear
                     </Button>
                 </Panel>
