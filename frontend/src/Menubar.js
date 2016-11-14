@@ -39,7 +39,7 @@ const Menubar = React.createClass({
                     </ul>
                 </div>
             );
-        }
+        },
     });
 
 export default Menubar;
