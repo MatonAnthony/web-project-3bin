@@ -26,7 +26,6 @@ const Ticket = React.createClass({
     render() {
         let list = [];
         this.state.ticketList.forEach((element, index) => {
-            console.log(element);
             list.push(<TicketLine key={index}
                                   product={this.state.ticketList[index]}/>);
         });
