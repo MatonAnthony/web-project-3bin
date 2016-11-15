@@ -1,6 +1,5 @@
 import React from 'react';
 import './Menubar.css';
-<<<<<<< HEAD
 
 const Menubar = React.createClass({
     getInitialState() {
@@ -67,48 +66,5 @@ const Menubar = React.createClass({
         );
     },
 });
-=======
-import Time from 'react-time';
-
-const Menubar = React.createClass({
-        getInitialState() {
-            this.interval = null;
-            return {
-                now: new Date(),
-            };
-        },
-
-        componentDidMount: function() {
-            const self = this;
-            self.interval = setInterval(function() {
-                self.setState({
-                    now: new Date(),
-                });
-            }, 1000);
-        },
-
-        componentWillUnmount: function() {
-            clearInterval(this.interval);
-        },
-
-        render() {
-            return (
-                <div className="Menubar">
-                    <ul className="Menubar-menu">
-                        <div className="">
-                            <li className="Menubar-name">login name</li>
-                            <li className="Menubar-date">
-								<Time value={this.state.now} format="DD/MM/YYYY" />
-							</li>
-                            <li className="Menubar-time">
-								<Time value={this.state.now} format="HH:mm:ss" />
-							</li>
-                        </div>
-                    </ul>
-                </div>
-            );
-        },
-    });
->>>>>>> 39e0adf691abcff8b2b42aeb4d63f9b194b2fc48
 
 export default Menubar;
