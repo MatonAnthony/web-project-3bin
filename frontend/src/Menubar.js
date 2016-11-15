@@ -34,7 +34,7 @@ const Menubar = React.createClass({
      * this.props has changed
      * @param {Number} nextState used to check if
      * this.state has changed
-     * @return true if now.sec equals 59
+     * @return {boolean} true if now.sec equals 59
      * */
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.now.getSeconds() === 59) {
@@ -50,7 +50,7 @@ const Menubar = React.createClass({
      * the function toTimeString():hh:mm:ss, we only
      * need hh:mm. This is done with the substring
      * as below
-     * @return the rendered html
+     * @return {State} the rendered html
      */
     render() {
         const today = new Date();
