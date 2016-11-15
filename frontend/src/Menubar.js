@@ -3,7 +3,6 @@ import './Menubar.css';
 
 const Menubar = React.createClass({
     getInitialState() {
-        var now = new Date();
         this.interval = null;
         return {
             now: new Date(),
@@ -18,9 +17,8 @@ const Menubar = React.createClass({
     componentDidMount: function() {
         const self = this;
         self.interval = setInterval(function() {
-            var now = new Date();
             self.setState({
-                now: now,
+                now: new Date(),
             });
         }, 1000);
     },
@@ -32,9 +30,14 @@ const Menubar = React.createClass({
     /**
      * The component will only be rerendered
      * when the seconds are equal to 59
+     * @param {Number} nextProps used to check if
+     * this.props has changed
+     * @param {Number} nextState used to check if
+     * this.state has changed
+     * @return true if now.sec equals 59
      * */
-    shouldComponentUpdate(nextProps, nextState){
-        if (this.state.now.getSeconds() === 59){
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.now.getSeconds() === 59) {
             return true;
         }
         return false;
@@ -47,6 +50,7 @@ const Menubar = React.createClass({
      * the function toTimeString():hh:mm:ss, we only
      * need hh:mm. This is done with the substring
      * as below
+     * @return the rendered html
      */
     render() {
         const today = new Date();
@@ -57,7 +61,8 @@ const Menubar = React.createClass({
                     <p>{this.state.login}</p>
                 </div>
                 <div className="Menubar-date">
-                    <p>{today.getDate()}/{today.getMonth()}/{today.getFullYear()}</p>
+                    <p>{today.getDate()}/{today.getMonth()}
+                        /{today.getFullYear()}</p>
                 </div>
                 <div className="Menubar-time">
                     <p>{time.substring(0, time.length - 3)}</p>
