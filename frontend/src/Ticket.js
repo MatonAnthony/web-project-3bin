@@ -25,12 +25,13 @@ const Ticket = React.createClass({
 
     render() {
         let list = [];
-        for (let i = 0; i<this.state.ticketList.length; i++) {
-            list.push(<TicketLine key={i} product={this.state.ticketList[i]}/>);
-        }
+        this.state.ticketList.forEach((element, index) => {
+            console.log(element);
+            list.push(<TicketLine key={index} product={this.state.ticketList[index]}/>);
+        });
 
         return (
-            <Panel className="panel-alignment">
+            <Panel className="ticket-panel-alignment">
                 {list}
                 <Panel>
                     <Button bsStyle="success" bsSize="large"

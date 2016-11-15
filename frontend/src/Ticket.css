@@ -1,6 +1,7 @@
-.panel-alignment{
+.ticket-panel-alignment{
     display: inline-block;
 }
+
 .ticket-align-right{
     float: right;
 }
