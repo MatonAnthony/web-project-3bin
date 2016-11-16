@@ -11,7 +11,7 @@
     display: inline-block;
     text-align: center;
     padding-left: 7%;
-    padding-right: 66%;
+    padding-right: 54%;
     text-decoration: none;
 }
 
@@ -25,5 +25,21 @@
 .Menubar-time {
     text-align: right;
     text-decoration: none;
+    display: inline-block;
+    width: 18px;
+    height: 15px;
+    padding-right: 10%;
+}
+
+.Menubar-time-display {
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    padding-right: 7%;
+}
+
+.btn-success {
+    width: 5%;
+    font-size: 15px;
     display: inline-block;
 }

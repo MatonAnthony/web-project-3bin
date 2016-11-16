@@ -1,114 +1,83 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 import './Menubar.css';
-<<<<<<< HEAD
+import clock from './images/clock.jpg';
+import ClockJs from './Clock.js'
 
 const Menubar = React.createClass({
     getInitialState() {
-        var now = new Date();
         this.interval = null;
+        this._onButtonClick = this._onButtonClick.bind(this);
         return {
             now: new Date(),
             login: 'login name',
+            showComponent: false,
         };
     },
 
     /**
-     * Every second this function reloads
-     * the date (to get the actual time).
+     * Function that toggles showComponent
      * */
-    componentDidMount: function() {
-        const self = this;
-        self.interval = setInterval(function() {
-            var now = new Date();
-            self.setState({
-                now: now,
+    _onButtonClick() {
+        if (this.state.showComponent){
+            this.setState({
+                showComponent: false,
             });
-        }, 1000);
-    },
-
-    componentWillUnmount: function() {
-        clearInterval(this.interval);
-    },
-
-    /**
-     * The component will only be rerendered
-     * when the seconds are equal to 59
-     * */
-    shouldComponentUpdate(nextProps, nextState){
-        if (this.state.now.getSeconds() === 59){
-            return true;
+        } else {
+            this.setState({
+                showComponent: true,
+            });
         }
-        return false;
     },
 
     /**
-     * Time gets updated every second, but it is only
-     * rerendered every minute.
-     * time gets displayed like follows normally with:
-     * the function toTimeString():hh:mm:ss, we only
-     * need hh:mm. This is done with the substring
-     * as below
+     * TODO
+     * */
+    logout(){
+
+    },
+
+    /**
+     * If showComponent is true, prints out
+     * the time gotten from component Clock,
+     * else prints out a clock icon
+     * @return {HTML} the rendered html
      */
     render() {
         const today = new Date();
-        let time = this.state.now.toTimeString().split(' ')[0];
         return (
             <div className="Menubar">
                 <div className="Menubar-name">
                     <p>{this.state.login}</p>
                 </div>
                 <div className="Menubar-date">
-                    <p>{today.getDate()}/{today.getMonth()}/{today.getFullYear()}</p>
+                    <p>{today.getDate()}/{today.getMonth()}
+                        /{today.getFullYear()}</p>
                 </div>
-                <div className="Menubar-time">
-                    <p>{time.substring(0, time.length - 3)}</p>
-                </div>
+
+                {this.state.showComponent ?
+                    <div
+                        onClick={this._onButtonClick}
+                        className="Menubar-time-display"
+                    >
+                        <ClockJs />
+                    </div>:
+                    <input
+                        type="image"
+                        src={clock}
+                        className="Menubar-time"
+                        onClick={this._onButtonClick}
+                    />
+                }
+
+                <Button
+                    type="button"
+                    bsStyle="success"
+                    onClick={this.logout}
+                > Logout </Button>
             </div>
         );
     },
 });
-=======
-import Time from 'react-time';
-
-const Menubar = React.createClass({
-        getInitialState() {
-            this.interval = null;
-            return {
-                now: new Date(),
-            };
-        },
-
-        componentDidMount: function() {
-            const self = this;
-            self.interval = setInterval(function() {
-                self.setState({
-                    now: new Date(),
-                });
-            }, 1000);
-        },
-
-        componentWillUnmount: function() {
-            clearInterval(this.interval);
-        },
-
-        render() {
-            return (
-                <div className="Menubar">
-                    <ul className="Menubar-menu">
-                        <div className="">
-                            <li className="Menubar-name">login name</li>
-                            <li className="Menubar-date">
-								<Time value={this.state.now} format="DD/MM/YYYY" />
-							</li>
-                            <li className="Menubar-time">
-								<Time value={this.state.now} format="HH:mm:ss" />
-							</li>
-                        </div>
-                    </ul>
-                </div>
-            );
-        },
-    });
->>>>>>> 39e0adf691abcff8b2b42aeb4d63f9b194b2fc48
 
 export default Menubar;
