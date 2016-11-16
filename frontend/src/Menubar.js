@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import './Menubar.css';
 import clock from './images/clock.jpg';
-import ClockJs from './Clock.js'
+import ClockJs from './Clock.js';
 
 const Menubar = React.createClass({
     getInitialState() {
@@ -19,7 +19,7 @@ const Menubar = React.createClass({
      * Function that toggles showComponent
      * */
     _onButtonClick() {
-        if (this.state.showComponent){
+        if (this.state.showComponent) {
             this.setState({
                 showComponent: false,
             });
@@ -33,7 +33,7 @@ const Menubar = React.createClass({
     /**
      * TODO
      * */
-    logout(){
+    logout() {
 
     },
 
