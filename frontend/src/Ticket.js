@@ -36,12 +36,12 @@ const Ticket = React.createClass({
             <div className="ticket-panel-alignment">
                 <Table responsive striped condensed >
                     <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         {list}
