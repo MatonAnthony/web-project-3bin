@@ -66,7 +66,7 @@ const TicketLine = React.createClass({
                    <td className="ticketLine-vertical-align">
                         {this.props.product.price}€
                    </td>
-                    <td>
+                    <div>
                         <Modal show={this.state.showModal} bsSize="sm">
                             <Modal.Header closeButton
                                           onHide={this.closeNoChange}>
@@ -101,7 +101,7 @@ const TicketLine = React.createClass({
                                 </Button>
                             </Modal.Footer>
                         </Modal>
-                    </td>
+                    </div>
                 </tr>
         );
     },
