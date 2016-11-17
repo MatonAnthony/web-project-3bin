@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Login from './Login';
+import Ticket from './Ticket';
 import './index.css';
 
 let isLogged = false;
@@ -11,8 +11,13 @@ if(isLogged) {
         document.getElementById('root')
     );
 } else {
+    let list = [];
+    list.push({productName: 'Moules', price: '12'});
+    list.push({productName: 'Frites', price: '5'});
+    list.push({productName: 'Mayo', price: '2'});
+
     ReactDOM.render(
-        <Login />,
+        <Ticket ticketList={list}/>,
         document.getElementById('root')
     );
 }

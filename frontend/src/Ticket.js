@@ -1,5 +1,5 @@
 import React from 'react';
-import {Panel, Button} from 'react-bootstrap';
+import {Panel, Table, Button} from 'react-bootstrap';
 import TicketLine from './TicketLine';
 import './Ticket.css';
 
@@ -12,7 +12,7 @@ const Ticket = React.createClass({
     },
 
     propTypes: {
-      ticketList: React.PropTypes.array.isRequired,
+      ticketList: React.PropTypes.array,
     },
 
     clearList() {
@@ -25,14 +25,28 @@ const Ticket = React.createClass({
 
     render() {
         let list = [];
-        this.state.ticketList.forEach((element, index) => {
-            list.push(<TicketLine key={index}
-                                  product={this.state.ticketList[index]}/>);
-        });
+        if(this.state.ticketList != null) {
+            this.state.ticketList.forEach((element, index) => {
+                list.push(<TicketLine key={index}
+                                      product={this.state.ticketList[index]}/>);
+            });
+        }
 
         return (
-            <Panel className="ticket-panel-alignment">
-                {list}
+            <div className="ticket-panel-alignment">
+                <Table responsive striped condensed >
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {list}
+                    </tbody>
+                </Table>
                 <Panel>
                     <Button bsStyle="success" bsSize="large"
                             onClick={this.initiatePayment}>
@@ -43,7 +57,7 @@ const Ticket = React.createClass({
                         Clear
                     </Button>
                 </Panel>
-            </Panel>);
+            </div>);
     },
 });
 

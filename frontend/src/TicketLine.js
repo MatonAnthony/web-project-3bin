@@ -1,5 +1,5 @@
 import React from 'react';
-import {Panel, Button} from 'react-bootstrap';
+import {Button, Modal, InputGroup} from 'react-bootstrap';
 import './TicketLine.css';
 
 const TicketLine = React.createClass({
@@ -10,40 +10,100 @@ const TicketLine = React.createClass({
 
     getInitialState() {
       return {
-         'quantity': 1,
+         quantity: 1,
+         showModal: false,
       };
     },
 
+    openEditor() {
+        this.setState({
+           quantity: this.state.quantity,
+           showModal: true,
+        });
+    },
+
+    closeEditor() {
+        let input = document.getElementById('inputModal');
+        this.setState({
+            quantity: input.value,
+            showModal: false,
+        });
+    },
+
+    closeNoChange() {
+        this.setState({
+            quantity: this.state.quantity,
+            showModal: false,
+        });
+    },
+
     addOne() {
-        this.setState({'quantity': (this.state.quantity+1)});
+        let input = document.getElementById('inputModal');
+        input.value++;
     },
 
     removeOne() {
-        if (this.state.quantity > 1) {
-            this.setState({'quantity': (this.state.quantity - 1)});
+        let input = document.getElementById('inputModal');
+        if(input.value >1) {
+            input.value--;
         }
     },
 
     render() {
         return (
-            <div>
-                <Panel>
-                    <Button bsSize="xsmall" className="ticketLine-margin"
-                            onClick={this.addOne}>+</Button>
-                    <Button bsSize="xsmall" className="ticketLine-margin"
-                            onClick={this.removeOne}>-</Button>
-                    <div className="ticketLine-inline-block ticketLine-margin">
+                <tr>
+                    <td>
+                        <Button bsSize="large" onClick={this.openEditor}>
+                            Edit
+                        </Button>
+                    </td>
+                    <td className="ticketLine-vertical-align">
                         {this.props.product.productName}
-                    </div>
-                    <div className="ticketLine-inline-block ticketLine-margin">
-                        (x{this.state.quantity})
-                    </div>
-                    <div className="ticketLine-inline-block
-                        ticketLine-align-right">
+                    </td>
+                   <td className="ticketLine-vertical-align">
+                        x{this.state.quantity}
+                   </td>
+                   <td className="ticketLine-vertical-align">
                         {this.props.product.price}€
-                    </div>
-                </Panel>
-            </div>);
+                   </td>
+                    <td>
+                        <Modal show={this.state.showModal} bsSize="sm">
+                            <Modal.Header closeButton
+                                          onHide={this.closeNoChange}>
+                                <Modal.Title>Change Quantity</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <InputGroup>
+                                    <span className="input-group-btn">
+                                        <Button onClick={this.addOne}
+                                                bsStyle="success"
+                                                bsSize="large"
+                                                >
+                                            +
+                                        </Button>
+                                    </span>
+                                    <input id="inputModal"
+                                           type="number"
+                                           className="form-control input-lg"
+                                           defaultValue={this.state.quantity}
+                                           />
+                                    <span className="input-group-btn">
+                                        <Button onClick={this.removeOne}
+                                                bsStyle="danger" bsSize="large">
+                                            -
+                                        </Button>
+                                    </span>
+                                </InputGroup>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button onClick={this.closeEditor}>
+                                    Valider
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </td>
+                </tr>
+        );
     },
 
 });
