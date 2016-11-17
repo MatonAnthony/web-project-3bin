@@ -1,0 +1,19 @@
+.table tbody>tr>td.ticketLine-vertical-align{
+    vertical-align: middle;
+    text-align: right;
+}
+
+.ticketLine-modal-inline-block{
+    display: inline-block;
+}
+
+
+#inputModal::-webkit-inner-spin-button,
+#inputModal::-webkit-outer-spin-button  {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#inputModal {
+    text-align: center;
+}
