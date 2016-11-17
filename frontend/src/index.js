@@ -14,7 +14,7 @@ if(isLogged) {
     let list = [];
     list.push({productName: 'Moules', price: '12'});
     list.push({productName: 'Frites', price: '5'});
-    list.push({productName: 'Mayo', price: '2'});
+    list.push({productName: 'Mayo', price: '3'});
 
     ReactDOM.render(
         <Ticket ticketList={list}/>,
