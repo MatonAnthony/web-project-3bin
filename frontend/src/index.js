@@ -7,7 +7,7 @@ import './index.css';
 /*
  * TODO : Design Frontend architecture
  */
-let isLogged = true;
+let isLogged = false;
 if(isLogged) {
     ReactDOM.render(
         <Login />,
