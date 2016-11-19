@@ -1,0 +1,67 @@
+//Dropping users and tables*/
+use admin;
+db.dropAllUsers();
+db.dropDatabase();
+
+use dbdrago;
+db.dropAllUsers();
+db.dropDatabase();
+
+use dbmartin;
+db.dropAllUsers();
+db.dropDatabase();
+
+use dbantho;
+db.dropAllUsers();
+db.dropDatabase();
+
+use dbprod;
+db.dropAllUsers();
+db.dropDatabase();
+
+//Creating new users and tables
+
+use admin;
+db.createUser({
+user: "ourAdmin",
+pwd: "abc123.258",
+roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+});
+
+use dbdrago
+db.createUser({
+user: "drago",
+pwd: "123456.",
+roles: [ { role: "dbOwner", db: "dbdrago" } ]
+} )
+
+use dbmartin
+db.createUser({
+user: "martin",
+pwd: "123456.",
+roles: [ { role: "dbOwner", db: "dbmartin" } ]
+} )
+
+use dbantho
+db.createUser({
+user: "antho",
+pwd: "123456.",
+roles: [ { role: "dbOwner", db: "dbantho" } ]
+} )
+
+use dbprod
+db.createUser({
+user: "adminProd",
+pwd: "123456.",
+roles: [ {role: "dbOwner", db: "dbprod"} ]
+} )
+
+db.createUser({
+user: "testacc",
+pwd: "123456.",
+roles: [
+{ role: "readWrite", db: "dbdrago"},
+{ role: "readWrite", db: "dbmartin"},
+{ role: "readWrite", db: "dbantho"},
+{ role: "readWrite", db: "dbprod"}]
+})
