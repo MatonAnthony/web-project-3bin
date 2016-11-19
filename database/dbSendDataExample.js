@@ -10,7 +10,7 @@ let productSchema= new Schema({
     department: String,
     productName: String,
     product: String,
-    price: String, //TODO We really want a String there ?
+    price: Number,
     tva: Number,
     category: String,
 });
@@ -45,7 +45,7 @@ let aProduct = new productModel({
     department: 'NewDepartement',
     productName: 'Awesome Wooden Sausages',
     product: 'Bacon',
-    price: '902.00',
+    price: 902.00,
     tva: 90862,
     category: 'accusamus',
 });

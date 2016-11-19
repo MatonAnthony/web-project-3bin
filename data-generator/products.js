@@ -19,7 +19,7 @@ function generateProducts(numberOfProducts) {
         let id = faker.random.number();
         let department = faker.commerce.department();
         let productName = faker.commerce.productName();
-        let product = faker.commerce.product();
+        let product = faker.random.number();
         let price = faker.commerce.price();
         let productCategory = faker.lorem.word();
         let tva = faker.random.number();
