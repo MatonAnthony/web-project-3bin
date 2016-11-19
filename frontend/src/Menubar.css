@@ -1,0 +1,17 @@
+.menubar-logout {
+    font-size: 1.25em;
+}
+
+.menubar-brand .menubar-time {
+    font-size: 1.5em;
+}
+
+@media screen and (max-height: 1024px) {
+    .menubar-time {
+        display: none;
+    }
+
+    .menubar-logout {
+        width: 100%
+    }
+}
