@@ -5,7 +5,6 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -44,26 +43,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-mongoose.connect('mongodb://dragomitch.me/test');
-
-var Cat = mongoose.model('Cat', { name: String });
-var db = mongoose.connection;
-var kitty = new Cat({ name: 'Zildjian' });
-
-kitty.save(function (err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('meow');
-  }
-});
-
-db.once('open', function() {
-  console.log("Into");
-});
-
-
-
 
 module.exports = app;

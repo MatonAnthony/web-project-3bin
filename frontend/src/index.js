@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from './Login';
-import Register from './Register';
+import App from './App';
+import Ticket from './Ticket';
 import './index.css';
 
-/*
- * TODO : Design Frontend architecture
- */
 let isLogged = false;
 if(isLogged) {
     ReactDOM.render(
-        <Login />,
+        <App />,
         document.getElementById('root')
     );
 } else {
+    let list = [];
+    list.push({productName: 'Moules', price: '12'});
+    list.push({productName: 'Frites', price: '5'});
+    list.push({productName: 'Mayo', price: '3'});
+
     ReactDOM.render(
-        <Register />,
+        <Ticket ticketList={list}/>,
         document.getElementById('root')
     );
 }
