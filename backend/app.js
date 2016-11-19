@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-//uncomment after placing the favicon
+//TODO uncomment after placing the favicon
 //const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
