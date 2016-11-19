@@ -4,17 +4,21 @@ const path = require('path');
 //const favicon = require('serve-favicon');
 const winston = require('winston');
 const sentry = require('winston-sentry');
+const raven = require('raven');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 
+//This is temporary until the config file
+const DSN = 'https://0df4e05f1447440c8ec6c484ce86397d:1a5c162f9efa4913896636b12f561262@sentry.io/115501';
+
 let logger = new winston.Logger({
     transports: [
         new sentry({
             level: 'warn',
-            dsn: 'https://fdd11699dfe64542812a958d044f28e7:7ddba33388734f97be2d3112184072a9@sentry.io/114216',
+            dsn: DSN,
         }),
         new (winston.transports.Console)({
             timestamp: true,
@@ -25,7 +29,8 @@ let logger = new winston.Logger({
 
 let app = express();
 
-
+//The request handler must be the first item
+app.use(raven.middleware.express.requestHandler(DSN));
 //uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
@@ -36,23 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
 
-// error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-});
+app.use(raven.middleware.express.errorHandler(DSN));
 
 logger.info('Server started');
 
