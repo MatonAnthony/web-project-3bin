@@ -9,6 +9,25 @@ var debug = require('debug')('backend:server');
 var http = require('http');
 
 /**
+ * Load the config file
+ */
+let configPath;
+switch(process.env.NODE_ENV) {
+    case PRODUCTION:
+        configPath = '../config/production.env';
+        break;
+    case DEV:
+        configPath = '../config/dev.env';
+        break;
+    case TEST:
+        configPath = '../config/test.env';
+    default:
+        /* Fallback to DEV config */
+        configPath = '../config/dev.env';
+}
+const config = require('dotenv').config({silent: true, path: configPath});
+
+/**
  * Get port from environment and store in Express.
  */
 
