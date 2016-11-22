@@ -8,6 +8,8 @@ const raven = require('raven');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const mongoose = require('mongoose');
+
 const index = require('./routes/index');
 const users = require('./routes/users');
 
@@ -29,10 +31,19 @@ let logger = new winston.Logger({
 
 let app = express();
 
+let db = mongoose.connection;
+db.on('error', (err) => {
+    logger.log('error', '[DB] ' + err.name + ' : ' + err.message);
+});
+
+mongoose.connect(process.env.MONGO_USER + ':' + process.env.MONGO_PASS
+    + '@' + process.env.MONGO_URL);
+
 //The request handler must be the first item
 app.use(raven.middleware.express.requestHandler(DSN));
 //uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//TODO: Fix
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
