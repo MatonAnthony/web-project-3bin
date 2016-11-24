@@ -22,7 +22,7 @@ function generateUsers(numberOfUsers) {
         let lastname = faker.name.lastName();
         let lastConnection = faker.date.past();
         let accessCardId = faker.random.number();
-        let permissions = [];
+        // let permissions = [];
 
         users.push({
             'pseudo': pseudo,
@@ -32,7 +32,7 @@ function generateUsers(numberOfUsers) {
             'lastname': lastname,
             'lastConnection': lastConnection,
             'accessCardId': accessCardId,
-            'permissions': permissions,
+            //'permissions': permissions,
         });
     }
 
