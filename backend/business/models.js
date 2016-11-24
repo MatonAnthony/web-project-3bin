@@ -64,9 +64,9 @@ const cashRegisterSchema = new Schema({
 
 const cashRegister = mongoose.model('CashRegister', cashRegisterSchema);
 
-modules.exports.product = product;
-modules.exports.user = user;
-modules.exports.payment = payment;
-modules.exports.sell = sell;
-modules.exports.ticket = ticket;
-modules.exports.cashRegister = cashRegister;
+module.exports.product = product;
+module.exports.user = user;
+module.exports.payment = payment;
+module.exports.sell = sell;
+module.exports.ticket = ticket;
+module.exports.cashRegister = cashRegister;
