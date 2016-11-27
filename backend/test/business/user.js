@@ -2,13 +2,15 @@ const rewire = require('rewire');
 const user = rewire('../../business/user.js');
 const bcrypt = require('bcrypt');
 const assert = require('assert');
-const models = require('../../business/models.js');
-const should = require('should');
 
 // Database configuration
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/unittest');
 mongoose.Promise = global.Promise;
+
+// process.env configuration due to issue to read config file
+process.env.JWT_SECRET = 'JeSuisUneLicorne';
+process.env.JWT_TOKEN_EXPIRATION = '24h';
 
 // Note that due to the code behind this test to be synchronous, this test
 // takes around 1/4 sec to run.
@@ -34,7 +36,7 @@ describe('user', function() {
                 email: 'glados@aperture.sciences',
                 firstname: 'Aperture',
                 lastname: 'Science',
-                accessCardId: 0
+                accessCardId: 0,
             };
             
             user.register(futureUser).then(function() {
