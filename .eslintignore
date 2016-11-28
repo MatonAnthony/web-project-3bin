@@ -20,3 +20,5 @@ node_modules/*
 **/*-test.js
 **/*-compiled.js
 
+# Ignore codecov and other .yml files
+*.yml
