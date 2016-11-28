@@ -30,8 +30,8 @@ exports.register = (futureUser) => {
  */
 exports.login = (login, password) => {
     let promise = new Promise( (resolve, reject) => {
-        if(login === 'number' && password === 'undefined') {
-            let query = models.user.findOne({accessCard: login}).exec();
+        if(typeof login === 'number' && typeof password === 'undefined') {
+            let query = models.user.findOne({accessCardId: login}).exec();
             query.then((user) => {
                 let token = jwt.sign({pseudo: user.pseudo, id: user._id},
                     process.env.JWT_SECRET, {
