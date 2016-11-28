@@ -18,43 +18,30 @@ exports.register = (futureProduct) => {
 };
 
 /**
- * Get a product based on the non-empty fields of the param
- * @param {Object} futureProduct The product to find in the database
- * @return {Promise} return the future related to the find process
+ * Get all products based on the fields of the param
+ * @param {Object} futureProduct An object with the fields to compare
+ * @return {Promise} return the future related to the getAllProducts process
  */
-exports.getProduct = (futureProduct) => {
-    let query = '{';
-
-    for(let index in futureProduct) {
-        if(futureProduct.hasOwnProperty(index)
-            && futureProduct[index] != null) {
-            query= query + ', ' + index + ': ' + futureProduct[index];
-        }
-    }
-
-    query += '};';
-
-    return models.product.findOne(query);
+exports.getAllProducts = (futureProduct) => {
+    return models.product.find(futureProduct);
 };
 
 /**
- * Get a product based on the non-empty fields of the param
- * @param {Object} futureProduct The product to find in the database
- * @return {Promise} return the future related to the findAll process
+ * Update a product in the database
+ * @param {Object} productId The id of the product to update
+ * @param {Object} fieldsToUpdate An object with the fields with the new value
+ * @return {Promise} return the future related to the updateProduct process
  */
-exports.getAllProducts = (futureProduct) => {
-    let query = '{';
-
-    for(let index in futureProduct) {
-        if(futureProduct.hasOwnProperty(index)
-            && futureProduct[index] != null) {
-            query= query + ', ' + index + ': ' + futureProduct[index];
-        }
-    }
-
-    query += '};';
-
-    return models.product.find(query);
+exports.updateProduct = (productId, fieldsToUpdate) => {
+    return models.product.findOneAndUpdate({_id: productId}, fieldsToUpdate,
+        {new: true});
 };
 
-
+/**
+ * Remove the product in the database, for the given id
+ * @param {Object} productId The id of the product to remove
+ * @return {Promise} return the future related to the remove process
+ */
+exports.removeProduct = (productId) => {
+  return models.product.find({_id: productId}).remove().exec();
+};

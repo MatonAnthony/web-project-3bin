@@ -3,11 +3,6 @@ const user = rewire('../../business/user.js');
 const bcrypt = require('bcrypt');
 const assert = require('assert');
 
-// Database configuration
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/unittest');
-mongoose.Promise = global.Promise;
-
 // process.env configuration due to issue to read config file
 process.env.JWT_SECRET = 'JeSuisUneLicorne';
 process.env.JWT_TOKEN_EXPIRATION = '24h';
@@ -40,7 +35,7 @@ describe('user', function() {
             };
             
             user.register(futureUser).then(function() {
-                    done(); 
+                    done();
             }).catch(function(err) {
                 assert.fail();
             });
