@@ -1,3 +1,4 @@
+const rewire = require('rewire');
 const assert = require('assert');
 const product = rewire('../../business/product.js');
 
