@@ -18,43 +18,12 @@ exports.register = (futureProduct) => {
 };
 
 /**
- * Get a product based on the non-empty fields of the param
- * @param {Object} futureProduct The product to find in the database
- * @return {Promise} return the future related to the find process
- */
-exports.getProduct = (futureProduct) => {
-    let query = '{';
-
-    for(let index in futureProduct) {
-        if(futureProduct.hasOwnProperty(index)
-            && futureProduct[index] != null) {
-            query= query + ', ' + index + ': ' + futureProduct[index];
-        }
-    }
-
-    query += '};';
-
-    return models.product.findOne(query);
-};
-
-/**
- * Get a product based on the non-empty fields of the param
- * @param {Object} futureProduct The product to find in the database
- * @return {Promise} return the future related to the findAll process
+ * Get all products based on the fields of the param
+ * @param {Object} futureProduct An object with the fields to compare
+ * @return {Promise} return the future related to the getAllProducts process
  */
 exports.getAllProducts = (futureProduct) => {
-    let query = '{';
-
-    for(let index in futureProduct) {
-        if(futureProduct.hasOwnProperty(index)
-            && futureProduct[index] != null) {
-            query= query + ', ' + index + ': ' + futureProduct[index];
-        }
-    }
-
-    query += '};';
-
-    return models.product.find(query);
+    return models.product.find(futureProduct);
 };
 
 
