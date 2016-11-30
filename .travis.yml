@@ -1,12 +1,23 @@
 language: node_js
 node_js:
     - stable
+services:
+    - mongodb
+env:
+    - CXX=g++-4.8
+addons:
+    apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-4.8
 install:
     - npm install --dev
     - npm install -g codecov istanbul
+    - cd backend && npm install --dev && cd ..
 script:
     - ./node_modules/.bin/eslint *
-    - cd backend && istanbul cover ./../node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+    - cd backend && istanbul cover ./../node_modules/mocha/bin/_mocha --recursive --report lcovonly $(find test/) -- -R spec
     - codecov --token=0d0fb920-db93-41e0-9566-65ed3eaa2143
 
 after_success:

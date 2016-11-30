@@ -1,0 +1,5 @@
+# Ignore my custom scripts
+docker-create.sh
+
+# Ignore the docker mounting point
+mnt/*
