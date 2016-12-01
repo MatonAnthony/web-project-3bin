@@ -29,15 +29,15 @@ exports.getAllProducts = (futureProduct) => {
 /**
  * Update a product in the database
  * @param {Object} productId The id of the product to update
- * @param {Object} futureProduct The object with the changes to do
+ * @param {Object} fieldsToUpdate An object with the fields with the new value
  * @return {Promise} return the future related to the updateProduct process
  */
-exports.updateProduct = (productId, futureProduct) => {
+exports.updateProduct = (productId, fieldsToUpdate) => {
     let options = {
         new: true,
     };
 
-    return models.product.findOneAndUpdate({_id: productId}, futureProduct,
+    return models.product.findOneAndUpdate({_id: productId}, fieldsToUpdate,
         options);
 };
 

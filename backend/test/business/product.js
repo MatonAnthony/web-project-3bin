@@ -4,21 +4,22 @@ const models = require('../../business/models');
 const mongoose = require('mongoose');
 
 const id = new mongoose.Types.ObjectId;
+mongoose.connect('mongodb://localhost/test');
+mongoose.Promise = global.Promise;
 
-let productTemp = new models.product({
-    _id: id,
-    department: 'Alimentaire',
-    productName: 'Moules',
-    ean: '768501540',
-    price: 12,
-    tva: 3,
-    category: 'others',
-});
-
-productTemp.save().then(() => {
-
-}).catch((error) => {
-    console.log(error);
+describe('hook', function() {
+    before('Add a product to the DB', function() {
+        let productTemp = new models.product({
+            _id: id,
+            department: 'Alimentaire',
+            productName: 'Moules',
+            ean: '768501540',
+            price: 12,
+            tva: 3,
+            category: 'others',
+        });
+        productTemp.save().then().catch();
+    });
 });
 
 describe('product', function() {
@@ -32,7 +33,6 @@ describe('product', function() {
                 tva: 3,
                 category: 'others',
             };
-
             return product.register(futureProduct);
         });
     });
