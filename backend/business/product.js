@@ -43,7 +43,7 @@ exports.updateProduct = (productId, futureProduct) => {
 
 /**
  * Remove the product in the database, for the given id
- * @param productId The id of the product to remove
+ * @param {Object} productId The id of the product to remove
  * @return {Promise} return the future related to the remove process
  */
 exports.removeProduct = (productId) => {
