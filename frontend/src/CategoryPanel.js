@@ -1,37 +1,23 @@
 import React from 'react';
-import {Button, Image} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import './CategoryPanel.css';
 
 const CategoryPanel = React.createClass({
-    propTypes: {
-        button: React.PropTypes.element,
-        name: String,
-    },
-
-    getInitialState(name) {
+    getInitialState() {
         return {
-            button: this.props.button,
-            name: name,
+            name: this.props.name,
         };
     },
 
-    clearList() {
-        this.setState({button: undefined});
-    },
-
     getCategoryPanel() {
-
+        // TODO call API
     },
 
     render() {
         return (
-            <div className="category-panel-alignment">
-                <Button bsStyle="success" bsSize="medium"
-                        onClick={this.getCategoryPanel()}>
-                    data
-                </Button>
-                <p>CategoryName</p>
-            </div>
+            <Button className="categoryPanel-button" bsStyle="success">
+                {this.state.name}
+            </Button>
         );
     },
 });
