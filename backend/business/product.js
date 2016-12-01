@@ -26,4 +26,21 @@ exports.getAllProducts = (futureProduct) => {
     return models.product.find(futureProduct);
 };
 
+/**
+ * Update a product in the database
+ * @param {Object} productId The id of the product to update
+ * @param {Object} futureProduct The object with the changes to do
+ * @return {Promise} return the future related to the updateProduct process
+ */
+exports.updateProduct = (productId, futureProduct) => {
+    let options = {
+        new: true,
+    };
 
+    return models.product.findOneAndUpdate({_id: productId}, futureProduct,
+        options);
+};
+
+exports.removeProduct = (productId) => {
+  return models.product.find({_id: productId}).remove().exec();
+};
