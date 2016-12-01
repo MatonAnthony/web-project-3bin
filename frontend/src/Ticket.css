@@ -5,3 +5,8 @@
 .ticket-align-right{
     float: right;
 }
+
+.ticket-button {
+    width: 49%;
+    margin: 0.25%;
+}
