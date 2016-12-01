@@ -13,7 +13,13 @@ if(isLogged) {
     );
 } else {
     ReactDOM.render(
-        <CategoryPanel/>,
+        <div>
+            <CategoryPanel name="Légumes" />
+            <CategoryPanel name="Carottes" />
+            <CategoryPanel name="Fruits" />
+            <CategoryPanel name="Viandes" />
+            <CategoryPanel name="Poissons" />
+        </div>,
         document.getElementById('root')
     );
 }
