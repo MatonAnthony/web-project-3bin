@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 
 //TODO Make it vary in function of the program config file
 //mongodb://username:password@host:port/database?options...
-mongoose.connect('mongodb://drago:123456.@dragomitch.me:27017/dbdrago');
+mongoose.connect('mongodb://drago:password@95.85.47.179:27017/drago');
 
 let productSchema= new Schema({
     department: String,
