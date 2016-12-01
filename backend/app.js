@@ -52,10 +52,6 @@ let logger = new winston.Logger({
 
 let app = express();
 
-
-/*mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS
-    + '@' + process.env.MONGO_URL);
-*/
 mongoose.connect('mongodb://' + process.env.MONGO_URL);
 
 let db = mongoose.connection;
