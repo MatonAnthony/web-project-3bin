@@ -4,8 +4,6 @@ const models = require('../../business/models');
 const mongoose = require('mongoose');
 
 const id = new mongoose.Types.ObjectId;
-mongoose.connect('mongodb://localhost/test');
-mongoose.Promise = global.Promise;
 
 describe('hook', function() {
     before('Add a product to the DB', function() {
