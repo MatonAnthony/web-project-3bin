@@ -57,9 +57,9 @@ describe('product', function() {
 
 describe('product', function() {
    describe('#removeProduct', function() {
-     it('Should remove the product for the given id', function() {
-        return product.removeProduct(id);
-     });
+         it('Should remove the product for the given id', function() {
+            return product.removeProduct(id);
+         });
    });
 });
 
