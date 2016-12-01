@@ -1,9 +1,7 @@
-const product = require('../../business/product.js');
+const product = require('../../business/product');
 const models = require('../../business/models');
 // Database configuration
 const mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/test');
-//mongoose.Promise = global.Promise;
 
 const id = new mongoose.Types.ObjectId;
 
