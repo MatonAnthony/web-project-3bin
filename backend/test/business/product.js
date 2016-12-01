@@ -1,6 +1,5 @@
-//const assert = require('assert');
 const product = require('../../business/product.js');
-const models = require('../../business/models')
+const models = require('../../business/models');
 // Database configuration
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
