@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import CategoryPanel from './CategoryPanel';
+import PrincipalPanel from './PrincipalPanel';
 
 import './index.css';
 
@@ -13,7 +13,7 @@ if(isLogged) {
     );
 } else {
     ReactDOM.render(
-        <CategoryPanel/>,
+        <PrincipalPanel/>,
         document.getElementById('root')
     );
 }
