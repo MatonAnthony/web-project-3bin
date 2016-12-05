@@ -5,7 +5,7 @@ const assert = require('assert');
 
 // Database configuration
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/unittest');
+mongoose.connect('mongodb://drago:password@95.85.47.179:27017/drago');
 mongoose.Promise = global.Promise;
 
 // process.env configuration due to issue to read config file
