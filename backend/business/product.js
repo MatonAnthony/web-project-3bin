@@ -33,12 +33,8 @@ exports.getAllProducts = (futureProduct) => {
  * @return {Promise} return the future related to the updateProduct process
  */
 exports.updateProduct = (productId, fieldsToUpdate) => {
-    let options = {
-        new: true,
-    };
-
     return models.product.findOneAndUpdate({_id: productId}, fieldsToUpdate,
-        options);
+        {new: true});
 };
 
 /**

@@ -1,5 +1,6 @@
 const product = require('../../business/product');
 const models = require('../../business/models');
+const assert = require('assert');
 // Database configuration
 const mongoose = require('mongoose');
 
@@ -16,7 +17,9 @@ describe('hook', function() {
             tva: 3,
             category: 'others',
         });
-        productTemp.save().then().catch();
+        productTemp.save().then().catch((error) => {
+            console.log(error);
+        });
     });
 });
 
@@ -39,7 +42,20 @@ describe('product', function() {
 describe('product', function() {
    describe('#getAllProducts', function() {
         it('should get all the products stored in the database', function() {
-          return product.getAllProducts();
+
+            product.getAllProducts().then(function(products) {
+                if(products[0]['department'] != 'Alimentaire' ||
+                    products[0]['productName'] != 'Moules' ||
+                    products[0]['ean'] != '768501540' ||
+                    products[0]['price'] != 12 ||
+                    products[0]['tva'] != 3 ||
+                    products[0]['category'] != 'others') {
+                        asser.fail();
+                }
+                assert.ok(products.length == 1);
+            }).catch(function(error) {
+                assert.fail(error);
+            });
         });
    });
 });
