@@ -42,7 +42,6 @@ describe('product', function() {
 describe('product', function() {
    describe('#getAllProducts', function() {
         it('should get all the products stored in the database', function() {
-
             product.getAllProducts().then(function(products) {
                 if(products[0]['department'] != 'Alimentaire' ||
                     products[0]['productName'] != 'Moules' ||
