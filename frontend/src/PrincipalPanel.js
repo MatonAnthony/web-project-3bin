@@ -18,33 +18,35 @@ const PrincipalPanel = React.createClass({
     /*TODO retrieve categories and create buttons fom them*/
 
     render() {
+        let list = [];
+        list.push({productName: 'Moules', price: '12.5'});
+        list.push({productName: 'Bananes', price: '1.25'});
+        list.push({productName: 'Frites', price: '3'});
         return (
-            <Grid fluid="true">
-                <Row>
-                    <Menubar/>
-                </Row>
-                <Row >
-                    <Col lg="2" md="2" sm="2" xs="2">
-                        <CategoryPanel name="Légumes"/>
-                    </Col>
-                    <Col lg="2" md="2" sm="2" xs="2">
-                        <CategoryPanel name="Carottes"/>
-                    </Col>
-                    <Col lg="2" md="2" sm="2" xs="2">
-                        <CategoryPanel name="Fruits"/>
-                    </Col>
-                    <Col lg="2" md="2" sm="2" xs="2">
-                        <CategoryPanel name="Viandes"/>
-                    </Col>
-                    <Col lg="2" md="2" sm="2" xs="2">
-                        <CategoryPanel name="Poissons"/>
-                    </Col>
-                    <Col lg="2" md="2" sm="2" xs="2">
-                        <Ticket className="principal-panel-ticket"/>
-                    </Col>
-                </Row>
+            <div>
+                <Menubar/>
+                <Ticket className='col-xs-6 col-md-4' 
+                    ticketList={list} />
 
-            </Grid>
+                <div className='col-xs-12 col-sm-6 col-md-8'>
+                    <CategoryPanel name='Moules'/>
+                    <CategoryPanel name='Bananes'/>
+                    <CategoryPanel name='Frites'/>
+                    <CategoryPanel name='Bièraubeurre'/>
+                    <CategoryPanel name='Dragées'/>
+
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                    <CategoryPanel name='Dragées'/>
+                </div>
+            </div>
         );
     },
 });

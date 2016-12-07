@@ -1,3 +1,8 @@
-.principal-panel-ticket{
-    alignment: right;
+@media screen and (min-height: 1024px) {
+}
+
+@media screen and (max-height: 1024px) {
+    .ticket-panel-alignment {
+        width: 100%;
+    }
 }

@@ -48,11 +48,11 @@ const Ticket = React.createClass({
                     </tbody>
                 </Table>
                 <Panel>
-                    <Button bsStyle="success" bsSize="large"
+                    <Button bsStyle="success" bsSize="large" className="ticket-button"
                             onClick={this.initiatePayment}>
                         Pay
                     </Button>
-                    <Button className="ticket-align-right" bsStyle="danger"
+                    <Button className="ticket-align-right ticket-button" bsStyle="danger"
                             bsSize="large" onClick={this.clearList}>
                         Clear
                     </Button>
