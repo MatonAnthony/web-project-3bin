@@ -41,7 +41,7 @@ const salesSchema = new Schema({
     date: Date,
 });
 
-const sell = mongoose.model('Sales', salesSchema);
+const sale = mongoose.model('Sales', salesSchema);
 
 const ticketsSchema = new Schema({
     date: Date,
@@ -55,7 +55,7 @@ const ticketsSchema = new Schema({
     payment: {type: Schema.Types.ObjectId, ref: 'Payments'},
 });
 
-const ticket = mongoose.model('Ticket', ticketsSchema);
+const ticket = mongoose.model('Tickets', ticketsSchema);
 
 const cashRegisterSchema = new Schema({
     payment: {type: Schema.Types.ObjectId, ref: 'Payments'},
@@ -67,6 +67,6 @@ const cashRegister = mongoose.model('CashRegister', cashRegisterSchema);
 module.exports.product = product;
 module.exports.user = user;
 module.exports.payment = payment;
-module.exports.sell = sell;
+module.exports.sale = sale;
 module.exports.ticket = ticket;
 module.exports.cashRegister = cashRegister;
