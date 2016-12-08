@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Menubar from './Menubar';
+import PrincipalPanel from './PrincipalPanel';
+
 import './index.css';
 
 let isLogged = false;
@@ -12,7 +13,7 @@ if(isLogged) {
     );
 } else {
     ReactDOM.render(
-        <Menubar/>,
+        <PrincipalPanel/>,
         document.getElementById('root')
     );
 }

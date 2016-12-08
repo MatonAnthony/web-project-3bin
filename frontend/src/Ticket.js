@@ -12,7 +12,7 @@ const Ticket = React.createClass({
     },
 
     propTypes: {
-      ticketList: React.PropTypes.array,
+        ticketList: React.PropTypes.array,
     },
 
     clearList() {
@@ -25,7 +25,7 @@ const Ticket = React.createClass({
 
     render() {
         let list = [];
-        if(this.state.ticketList != null) {
+        if (this.state.ticketList != null) {
             this.state.ticketList.forEach((element, index) => {
                 list.push(<TicketLine key={index}
                                       product={this.state.ticketList[index]}/>);
@@ -34,25 +34,27 @@ const Ticket = React.createClass({
 
         return (
             <div className="ticket-panel-alignment">
-                <Table responsive striped condensed >
+                <Table responsive striped condensed>
                     <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {list}
+                    {list}
                     </tbody>
                 </Table>
                 <Panel>
                     <Button bsStyle="success" bsSize="large"
+                            className="ticket-button"
                             onClick={this.initiatePayment}>
                         Pay
                     </Button>
-                    <Button className="ticket-align-right" bsStyle="danger"
+                    <Button className="ticket-align-right ticket-button"
+                            bsStyle="danger"
                             bsSize="large" onClick={this.clearList}>
                         Clear
                     </Button>
