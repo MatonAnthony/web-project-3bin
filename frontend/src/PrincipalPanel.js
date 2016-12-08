@@ -9,6 +9,10 @@ const PrincipalPanel = React.createClass({
     /*TODO retrieve categories and create buttons fom them*/
 
     render() {
+        let list = [];
+        list.push({name: 'Moules', price: '1.5'});
+        list.push({name: 'Frites', price: '1250'});
+
         return (
             <div>
                 <Menubar/>
