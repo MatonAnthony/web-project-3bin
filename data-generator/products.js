@@ -16,22 +16,22 @@ faker.locale = 'fr';
 function generateProducts(numberOfProducts) {
     let products = [];
     for(let i = 0; i < numberOfProducts; i++) {
-        let id = faker.random.number();
         let department = faker.commerce.department();
         let productName = faker.commerce.productName();
-        let product = faker.random.number();
+        let eanNumber = faker.random.number();
         let price = faker.commerce.price();
         let productCategory = faker.lorem.word();
         let tva = faker.random.number();
+	let isPreferred = faker.random.boolean();
 
         products.push({
-            'id': id,
             'department': department,
             'productName': productName,
-            'product': product,
+            'ean': eanNumber,
             'price': price,
             'tva': tva,
             'category': productCategory,
+            'isPreferred': isPreferred,
         });
     }
 
