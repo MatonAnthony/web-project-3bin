@@ -16,7 +16,7 @@ const registeredProducts = require('./registeredProducts.js');
 function generate() {
     let dataset = {};
     dataset.users = users(5);
-    dataset.products = products(20);
+    dataset.products = products(2000);
     dataset.tickets = tickets(10);
     dataset.payments = payments(5);
     dataset.searchs = searchs(5);
