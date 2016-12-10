@@ -57,16 +57,18 @@ const ticketsSchema = new Schema({
 
 const ticket = mongoose.model('Tickets', ticketsSchema);
 
-const cashRegisterSchema = new Schema({
-    payment: {type: Schema.Types.ObjectId, ref: 'Payments'},
-    balance: Number,
+const cartSchema = new Schema({
+    products: [{
+        product: {type: Schema.Types.ObjectId, ref: 'Products'},
+        quantity: Number,
+    }],
 });
 
-const cashRegister = mongoose.model('CashRegister', cashRegisterSchema);
+const cart = mongoose.model('Cart', cartSchema);
 
 module.exports.product = product;
 module.exports.user = user;
 module.exports.payment = payment;
 module.exports.sale = sale;
 module.exports.ticket = ticket;
-module.exports.cashRegister = cashRegister;
+module.exports.cart = cart;
