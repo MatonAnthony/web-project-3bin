@@ -1,10 +1,15 @@
 import React from 'react';
 import {Navbar, Nav, Button} from 'react-bootstrap';
+import Auth from './Auth';
 import './Menubar.css';
 
 const moment = require('moment');
 
 const Menubar = React.createClass({
+    propTypes: {
+        callback: React.PropTypes.func.isRequired,
+    },
+
     getDefaultProps() {
         return {
             date: moment().format('LLL'),
@@ -27,9 +32,8 @@ const Menubar = React.createClass({
     },
 
     handleLogout() {
-        /*
-         * TODO: Define how logout is going to be handled
-         */
+        Auth.deauthenticateUser();
+        this.props.callback();
     },
 
     render() {

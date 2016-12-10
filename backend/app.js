@@ -64,6 +64,17 @@ db.on('error', (err) => {
     logger.log('error', '[DB] ' + err.name + ' : ' + err.message);
 });
 
+/*
+ * Allow CORS however, we need to beware about MITM or Phishing made 
+ * possible by this
+ * TODO
+ */
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 //The request handler must be the first item
 app.use(raven.middleware.express.requestHandler(DSN));
 //uncomment after placing your favicon in /public
