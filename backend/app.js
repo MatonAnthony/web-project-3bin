@@ -7,7 +7,7 @@ const sentry = require('winston-sentry');
 const raven = require('raven');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const validator = require('express-validator');
 const mongoose = require('mongoose');
 
 const index = require('./routes/index');
@@ -69,11 +69,12 @@ app.use(raven.middleware.express.requestHandler(DSN));
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/', users);
 
 app.use(raven.middleware.express.errorHandler(DSN));
 
