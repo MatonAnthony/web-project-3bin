@@ -59,7 +59,7 @@ const Login = React.createClass({
         }).then((response) => {
            let contentType = response.headers.get('content-type');
            if(contentType && contentType.indexOf('application/json') !== -1) {
-               return response.json().then((json, response) => {
+               return response.json().then((json) => {
                    if(response.ok) {
                        /* JSON Processing successfull connection
                         * TODO : Finish the processing block based on mock 
