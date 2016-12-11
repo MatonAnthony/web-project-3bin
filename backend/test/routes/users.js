@@ -14,6 +14,18 @@ describe('Registration route related', function() {
             }).expect(200, done());
     });
 
+    it('Should return HTTP 417 (duplicate registration)', function(done) {
+        request.post('/register')
+            .send({
+                pseudo: 'Glados',
+                password: 'Glad0s',
+                email: 'aperture@sciences.gov',
+                firstname: 'Aperture',
+                secondName: 'Sciences',
+                accessCardId: '101010',
+            }).expect(417, done());
+    });
+
     it('Should return HTTP 417', function(done) { 
         request.post('/register')
             .send({})
