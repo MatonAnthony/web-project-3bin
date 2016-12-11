@@ -15,11 +15,11 @@ const registeredProducts = require('./registeredProducts.js');
  */
 function generate() {
     let dataset = {};
-    dataset.users = users(5);
-    dataset.products = products(20);
-    dataset.tickets = tickets(10);
-    dataset.payments = payments(5);
-    dataset.searchs = searchs(5);
+    dataset.users = users(50);
+    dataset.products = products(200);
+    dataset.tickets = tickets(100);
+    dataset.payments = payments(50);
+    dataset.searchs = searchs(500);
     dataset.accountancies = accountancy(10, 500000);
     dataset.registeredProducts = registeredProducts(20);
     return dataset;
