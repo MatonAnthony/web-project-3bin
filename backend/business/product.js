@@ -13,6 +13,7 @@ exports.register = (futureProduct) => {
         price: futureProduct.price,
         tva: futureProduct.tva,
         category: futureProduct.category,
+        isPreferred: futureProduct.isPreferred,
     });
     return product.save();
 };

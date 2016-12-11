@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const products = require('./routes/products');
 
 
 /**
@@ -75,6 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/', users);
+app.use('/', products);
 
 app.use(raven.middleware.express.errorHandler(DSN));
 

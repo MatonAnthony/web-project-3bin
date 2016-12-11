@@ -9,6 +9,7 @@ const productSchema = new Schema({
     price: Number,
     tva: Number,
     category: String,
+    isPreferred: Boolean,
 });
 
 const product = mongoose.model('Products', productSchema);
