@@ -14,13 +14,13 @@ const productSchema = new Schema({
 const product = mongoose.model('Products', productSchema);
 
 const userSchema = new Schema({
-    pseudo: String,
+    pseudo: {type: String, unique: true},
     password: String,
-    email: String,
+    email: {type: String, unique: true},
     firstname: String,
     lastname: String,
     lastConnection: Date,
-    accessCardId: Number,
+    accessCardId: {type: Number, unique: true},
     // TODO : Think about whether or not to manage permissions
 });
 

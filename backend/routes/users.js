@@ -19,7 +19,7 @@ router.post('/register', (req, res, next) => {
         user.register(req.body).then(() => {
             res.status(200).json({success: 'Successfull registration'});
         }).catch((err) => {
-            res.status(417);
+            res.status(417).end();
         });
     }
 });
