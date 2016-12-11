@@ -28,14 +28,13 @@ router.post('/login', (req, res, next) => {
     req.checkBody('pseudo').notEmpty().isAlpha();
 
     let errors = req.validationErrors();
-
     if(errors) {
         res.status(417).send(errors);
-    } else { 
+    } else {
         user.login(req.body.pseudo, req.body.password).then((jwt) => {
             res.status(200).json({token: jwt});
         }).catch((err) => {
-            res.status(403);
+            res.status(403).end();
         });
     }
 });

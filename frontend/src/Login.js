@@ -2,6 +2,7 @@ import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
+import Auth from './Auth';
 import './Login.css';
 
 /*
@@ -12,23 +13,23 @@ const URL = 'http://localhost:3001';
 const Login = React.createClass({
     getInitialState() {
         return {
-            login: 'pseudo',
+            pseudo: 'pseudo',
             password: 'password',
-            cardNumber: -1,
+            accessCardId: -1,
         };
     },
 
     getValidationState() {
-        const login = this.state.login;
+        const pseudo = this.state.pseudo;
         const password = this.state.password;
 
-        if(login.length <= 0 || password.length <= 0) return 'error';
+        if(pseudo.length <= 0 || password.length <= 0) return 'error';
 
         return 'success';
     },
 
     handleLoginChange(event) {
-        this.setState({login: event.target.value}, () => {
+        this.setState({pseudo: event.target.value}, () => {
             this.getValidationState();
         });
     },
@@ -40,20 +41,21 @@ const Login = React.createClass({
     },
 
     handleCardScannerChange(number) {
-        this.setState({cardNumber: number});
+        this.setState({accessCardId: number});
     },
 
     /*
      * TODO : Will require a refactor once the const URL refactor is settled
      */
     submitForm() {
-        let headers = new Headers({
-            'Content-Type': 'application/json',
-        });
-        fetch(URL + '/authenticate', {
+        let data = JSON.stringify(this.state);
+        fetch(URL + '/login', {
             method: 'POST',
-            body: this.state,
-            headers: headers,
+            body: data,
+            headers: {
+                'content-type': 'application/json',
+            },
+            mode: 'cors',
         }).then((response) => {
            let contentType = response.headers.get('content-type');
            if(contentType && contentType.indexOf('application/json') !== -1) {
@@ -63,8 +65,10 @@ const Login = React.createClass({
                         * TODO : Finish the processing block based on mock 
                         * or backend 
                         */
+                       Auth.authenticateUser(json.jwt);
                    } else {
                        /* JSON Processing + unsucessfull redirection */
+                       console.log(json);
                    }
                });
            }
@@ -85,8 +89,8 @@ const Login = React.createClass({
                                 <ControlLabel>Username :</ControlLabel>
                                 <FormControl
                                     type="text"
-                                    value={this.state.login}
-                                    placeholder={this.state.login}
+                                    value={this.state.pseudo}
+                                    placeholder={this.state.pseudo}
                                     onChange={this.handleLoginChange}
                                 />
 

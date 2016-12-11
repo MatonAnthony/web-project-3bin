@@ -31,8 +31,12 @@ exports.register = (futureUser) => {
 exports.login = (login, password) => {
     let promise = new Promise( (resolve, reject) => {
         if(typeof login === 'number' && typeof password === 'undefined') {
-            let query = models.user.findOne({accessCardId: login}).exec();
+            let query = models.user.find({accessCardId: login}).limit(1).exec();
             query.then((user) => {
+                if(user.length == 0) {
+                    throw new Error('User does not exist');
+                }
+                user = user.shift();
                 let token = jwt.sign({pseudo: user.pseudo, id: user._id},
                     process.env.JWT_SECRET, {
                         expiresIn: process.env.JWT_TOKEN_EXPIRATION,
@@ -42,10 +46,14 @@ exports.login = (login, password) => {
                 reject(err);
             });
         } else { 
-            let query = models.user.findOne({pseudo: login}).exec();
+            let query = models.user.find({pseudo: login}).limit(1).exec();
             query.then((user) => {
+                if(user.length == 0) {
+                    throw new Error('User does not exist');
+                }
+                user = user.shift();
                 if(!bcrypt.compareSync(password, user.password)) 
-                    reject(new Error('Incorrect password'));
+                    throw new Error('Incorrect password');
                 let token = jwt.sign({pseudo: user.pseudo, id: user._id},
                     process.env.JWT_SECRET, { 
                         expiresIn: process.env.JWT_TOKEN_EXPIRATION,
