@@ -6,7 +6,7 @@ before(function() {
     mongoose.Promise = global.Promise;
 
     let productTemp = new models.product({
-        _id: new mongoose.Types.ObjectId(123456789),
+        _id: new mongoose.Types.ObjectId('584ca77e78e2f724d8fea245'),
         department: 'Alimentaire',
         productName: 'Moules',
         ean: '768501540',
@@ -15,6 +15,15 @@ before(function() {
         category: 'others',
     });
     productTemp.save().then().catch(function(error) {
+        console.log(error);
+    });
+
+    let cartTemp = new models.cart({
+        _id: new mongoose.Types.ObjectId('584ca77e78e2f724d8fea145'),
+        products: [],
+    });
+
+    cartTemp.save().then().catch(function(error) {
         console.log(error);
     });
 });
