@@ -11,6 +11,7 @@ const logger = require('winston');
  * POST /carts/new => Add a cart and return the id of the created cart
  * GET /carts => Return an array with all the carts
  * GET /carts/{id} => Return the cart of id : {id}
+ * GET /carts/{id}/complete => Return the cart with all the products
  * PATCH /carts/{id}/removeProduct => Remove a product
  *          from the cart of id : {id}
  * PATCH /carts/{id}/productId => add a product to the cart based
@@ -55,6 +56,35 @@ router.get('/:id', (req, res) => {
             logger.log('error', 'Promise rejected : ', error);
             res.status(500).send();
         });
+    }
+});
+
+router.get('/:id/complete', (req, res) => {
+    req.checkParams('id').isMongoId();
+
+    let errors = req.validationErrors();
+
+    if(errors) {
+        res.status(417).send(errors);
+    } else {
+        cart.getAllCarts({_id: req.params.id})
+            .then((cart) => {
+                let promises = [];
+                cart[0].products.forEach(function(entry) {
+                    promises.push(product
+                        .getAllProducts({_id: entry.product}));
+                });
+
+                Promise.all(promises).then((values) => {
+                    res.status(200).json(values);
+                }).catch((error) => {
+                    logger.log('error', 'Promise rejected : ', error);
+                    res.status(500).send();
+                });
+            }).catch((error) => {
+                logger.log('error', 'Promise rejected : ', error);
+                res.status(500).send();
+            });
     }
 });
 
