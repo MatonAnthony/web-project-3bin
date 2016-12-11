@@ -76,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/', users);
-app.use('/', products);
+app.use('/products', products);
 
 app.use(raven.middleware.express.errorHandler(DSN));
 

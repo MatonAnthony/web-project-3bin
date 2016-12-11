@@ -2,19 +2,19 @@ const express = require('express');
 // eslint-disable-next-line no-cap
 const router = express.Router();
 const productBiz = require('../business/product.js');
+const logger = require('winston');
 
 /**
  * Routes available on /products :
  *
- * PUT /products -> add a product
- * GET /products -> return an array with all products
+ * POST /products -> add a product
+ * GET /products/preferred -> return an array of preferred products
  * GET /products/{id} -> return an product given his id
- * GET /products/pref/{isPreferred} -> return an array of preferred products
  * DELETE /products/{id} -> delete a product given his id
  * PATCH /products/{id} -> update the data for a product given his id
  */
 
-router.put('/products', (req, res) => {
+router.post('/', (req, res) => {
     req.checkBody('department').notEmpty().isAlpha();
     req.checkBody('productName').notEmpty();
     req.checkBody('ean').notEmpty().isNumeric();
@@ -27,39 +27,27 @@ router.put('/products', (req, res) => {
 
     if (errors) {
         res.status(417).send('Invalid arguments ' + errors);
-}
+    }
 
     productBiz.register(req.body).then(() => {
         res.status(201).json({success: 'Successfully added product'});
     }).catch((err) => {
+        logger.log('error', 'Promise Rejected : ', err);
         res.status(500).send('Internal Server Error : ' + err);
     });
 });
 
-router.get('/products', (req, res) => {
-    console.log('/products has been hitted');
-    productBiz.getAllProducts().then( (products) => {
-        res.status(200).json(products);
-    }).catch((err) => {
-        res.status(500).send('Internal Server Error : ' + err);
-    });
-});
-
-router.get('/products/pref/:isPreferred', (req, res, next) => {
-    console.log('/products/pref/:isPreferred has been hitted');
-    if(req.params.isPreferred !== 'true'&&req.params.isPreferred!== 'false') {
-        res.status(417).send('Invalid arguments');
-    }
+router.get('/preferred', (req, res) => {
     productBiz.getAllProducts({isPreferred: true}).then( (products) => {
         res.status(200).json(products);
     }).catch((err) => {
+        logger.log('error', 'Promise Rejected : ', err);
         res.status(500).send('Internal Server Error : ' + err);
     });
 });
 
-router.get('/products/:id', (req, res) => {
-    console.log('/products/:id has been hitted');
-    req.checkParams('id', 'Invalid id').isAlpha();
+router.get('/:id', (req, res) => {
+    req.checkParams('id', 'Invalid id').isMongoId();
 
     let errors = req.validationErrors();
     if(errors) {
@@ -68,25 +56,28 @@ router.get('/products/:id', (req, res) => {
     productBiz.getAllProducts({_id: req.params.id}).then( (product) => {
         res.status(200).json(product);
     }).catch((err) => {
+        logger.log('error', 'Promise Rejected : ', err);
         res.status(500).send('Internal Server Error : ' + err);
     });
 });
 
-router.delete('/products/:id', (req, res) => {
-    req.checkParams('id', 'Invalid id').isAlpha();
+router.delete('/:id', (req, res) => {
+    console.log('DELETE /:id');
+    req.checkParams('id', 'Invalid id').isMongoId();
 
     let errors = req.validationErrors();
     if(errors) {
         res.status(417).send('There have been validation errors: ' + errors);
     }
-    product.removeProduct(req.params.id).then(() =>{
+    productBiz.removeProduct(req.params.id).then(() =>{
         res.status(200);
     }).catch((error) => {
         res.status(500).send('Internal Server Error : ' + error);
     });
 });
 
-router.patch('/products/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
+    console.log('PATCH /:id');
     req.checkParams('id', 'Invalid id').isAlpha();
     req.checkBody('department', 'Invalid department').isAlpha();
     req.checkBody('productName', 'Invalid product').isAlpha();
@@ -100,7 +91,7 @@ router.patch('/products/:id', (req, res) => {
         res.status(417).send('There have been validation errors: ' + errors);
     }
 
-    product.updateProduct(req.params.id, req.body).then((product) => {
+    productBiz.updateProduct(req.params.id, req.body).then((product) => {
         res.status(200).send(product);
     }).catch((error) => {
         res.status(500).send('Internal Server Error : ' + error);
