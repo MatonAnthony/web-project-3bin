@@ -27,9 +27,7 @@ const Menubar = React.createClass({
     },
 
     handleLogout() {
-        /*
-         * TODO: Define how logout is going to be handled
-         */
+        localStorage.removeItem('auth_token');
     },
 
     render() {

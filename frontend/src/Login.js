@@ -50,7 +50,7 @@ const Login = React.createClass({
         let headers = new Headers({
             'Content-Type': 'application/json',
         });
-        fetch(URL + '/authenticate', {
+        fetch(URL + '/login', {
             method: 'POST',
             body: this.state,
             headers: headers,
@@ -59,6 +59,7 @@ const Login = React.createClass({
            if(contentType && contentType.indexOf('application/json') !== -1) {
                return response.json().then((json, response) => {
                    if(response.ok) {
+                        localStorage.setItem('auth_token', json.jwt);
                        /* JSON Processing successfull connection
                         * TODO : Finish the processing block based on mock 
                         * or backend 
