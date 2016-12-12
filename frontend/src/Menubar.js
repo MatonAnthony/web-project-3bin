@@ -60,6 +60,7 @@ const Menubar = React.createClass({
                         bsStyle="danger"
                         href="#"
                         className="menubar-logout navbar-btn"
+                        onClick={this.handleLogout}
                     >Logout</Button>
                 </Nav>
              </Navbar.Collapse>

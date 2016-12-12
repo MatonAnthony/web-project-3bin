@@ -8,13 +8,18 @@ import './Login.css';
 /*
  * TODO : This is a temporary solution until further discussion
  */
-const URL = 'http://localhost:3001';
+const URL = 'http://localhost:3000';
 
 const Login = React.createClass({
+
+    propTypes: {
+        callback: React.PropTypes.func.isRequired,
+    },
+
     getInitialState() {
         return {
-            pseudo: 'pseudo',
-            password: 'password',
+            pseudo: '',
+            password: '',
             accessCardId: -1,
         };
     },
@@ -23,7 +28,7 @@ const Login = React.createClass({
         const pseudo = this.state.pseudo;
         const password = this.state.password;
 
-        if(pseudo.length <= 0 || password.length <= 0) return 'error';
+        if(pseudo.length < 0 || password.length < 0) return 'error';
 
         return 'success';
     },
@@ -65,7 +70,8 @@ const Login = React.createClass({
                         * TODO : Finish the processing block based on mock 
                         * or backend 
                         */
-                       Auth.authenticateUser(json.jwt);
+                       Auth.authenticateUser(json.token);
+                       this.props.callback();
                    } else {
                        /* JSON Processing + unsucessfull redirection */
                        console.log(json);
@@ -90,7 +96,7 @@ const Login = React.createClass({
                                 <FormControl
                                     type="text"
                                     value={this.state.pseudo}
-                                    placeholder={this.state.pseudo}
+                                    placeholder="Pseudo"
                                     onChange={this.handleLoginChange}
                                 />
 
@@ -98,7 +104,7 @@ const Login = React.createClass({
                                 <FormControl
                                     type="password"
                                     value={this.state.password}
-                                    placeholder={this.state.password}
+                                    placeholder="Password"
                                     onChange={this.handlePasswordChange}
                                 />
 

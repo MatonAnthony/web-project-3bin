@@ -3,24 +3,55 @@ import {Panel, Table, Button} from 'react-bootstrap';
 import TicketLine from './TicketLine';
 import './Ticket.css';
 
+const URL = 'http://localhost:3000';
+
 const Ticket = React.createClass({
 
     getInitialState() {
         return {
-            ticketList: this.props.ticketList,
+            ticketList: [],
         };
     },
 
     propTypes: {
-        ticketList: React.PropTypes.array,
-    },
-
-    clearList() {
-        this.setState({ticketList: []});
+        newCartCallBack: React.PropTypes.func.isRequired,
+        cartId: React.PropTypes.string.isRequired,
     },
 
     initiatePayment() {
         //TODO : initiate the payment process
+    },
+
+    loadProducts() {
+        fetch(URL + '/carts/' + this.props.cartId + '/complete', {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+            mode: 'cors',
+        }).then((response) => {
+            let contentType = response.headers.get('content-type');
+            if(contentType && contentType.indexOf('application/json') !== -1) {
+                response.json().then((json) => {
+                    if(response.ok) {
+                        if (json.length >= 1) {
+                            let listTemp = [];
+
+                            json.forEach((entry) => {
+                                listTemp.push(entry[0]);
+                            });
+                            this.setState({
+                                ticketList: listTemp,
+                            });
+                        }else{
+                            this.setState({
+                                ticketList: [],
+                            });
+                        }
+                    }
+                });
+            }
+        });
     },
 
     render() {
@@ -28,12 +59,13 @@ const Ticket = React.createClass({
         if (this.state.ticketList != null) {
             this.state.ticketList.forEach((element, index) => {
                 list.push(<TicketLine key={index}
-                                      product={this.state.ticketList[index]}/>);
+                            product={this.state.ticketList[index]}
+                            cartId={this.props.cartId}/>);
             });
         }
 
         return (
-            <div className="ticket-panel-alignment">
+            <div >
                 <Table responsive striped condensed>
                     <thead>
                     <tr>
@@ -44,7 +76,7 @@ const Ticket = React.createClass({
                     </tr>
                     </thead>
                     <tbody>
-                    {list}
+                        {list}
                     </tbody>
                 </Table>
                 <Panel>
@@ -55,7 +87,7 @@ const Ticket = React.createClass({
                     </Button>
                     <Button className="ticket-align-right ticket-button"
                             bsStyle="danger"
-                            bsSize="large" onClick={this.clearList}>
+                            bsSize="large" onClick={this.props.newCartCallBack}>
                         Clear
                     </Button>
                 </Panel>

@@ -10,7 +10,7 @@ const CategoryPanel = React.createClass({
     },
 
     propTypes: {
-        name: React.PropTypes.String,
+        name: React.PropTypes.string,
     },
 
     getCategoryPanel() {
