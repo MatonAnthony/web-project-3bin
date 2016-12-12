@@ -15,9 +15,7 @@ const PrincipalPanel = React.createClass({
     getInitialState() {
         this.newCart();
         return ({
-            //TODO: change this
-            //isLogged: Auth.isUserAuthenticated(),
-            isLogged: true,
+            isLogged: Auth.isUserAuthenticated(),
             cartId: '',
         });
     },
@@ -40,7 +38,7 @@ const PrincipalPanel = React.createClass({
                     if(response.ok) {
                         this.setState(
                             {
-                                isLogged: this.state.isLogged,
+                                isLogged: Auth.isUserAuthenticated(),
                                 cartId: json['cartId'],
                             });
                         this.refs.ticket.loadProducts();
@@ -52,6 +50,10 @@ const PrincipalPanel = React.createClass({
         }).catch((error) => {
             console.log(error);
         });
+    },
+
+    loggedInCallback() {
+        this.setState({isLogged: Auth.isUserAuthenticated()});
     },
 
     loggedOutCallback() {
@@ -108,7 +110,7 @@ const PrincipalPanel = React.createClass({
         );
         } else {
             return (
-                <Login/>
+                <Login callback={this.loggedInCallback}/>
             );
         }
     },

@@ -42,7 +42,7 @@ const SearchField = React.createClass({
                 this.setState({
                     ean: '',
                     quantity: 1,
-                })
+                });
                 this.props.addProductCallback();
             }
         });

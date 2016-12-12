@@ -16,7 +16,7 @@ class Auth {
      * @return {Boolean} if the user is authenticated
      */
     static isUserAuthenticated() {
-        return localStorage.getItem('token') !== null;
+        return localStorage.getItem('auth_token') !== 'undefined';
     }
 
     /**
@@ -24,7 +24,7 @@ class Auth {
      *
      */
     static deauthenticateUser() {
-        localStorage.removeItem('token');
+        localStorage.setItem('auth_token', 'undefined');
     }
 
     /**
@@ -32,7 +32,7 @@ class Auth {
      * @return {String} return the JWT Token for the user
      */
     static getToken() {
-        return localStorage.getItem('token');
+        return localStorage.getItem('auth_token');
     }
 }
 
