@@ -2,10 +2,13 @@ import React from 'react';
 import {Button, Modal, InputGroup} from 'react-bootstrap';
 import './TicketLine.css';
 
+const URL = 'http://localhost:3000';
+
 const TicketLine = React.createClass({
 
     propTypes: {
-      product: React.PropTypes.object.isRequired,
+        product: React.PropTypes.object.isRequired,
+        cartId: React.PropTypes.string.isRequired,
     },
 
     getInitialState() {
@@ -13,6 +16,25 @@ const TicketLine = React.createClass({
          quantity: 1,
          showModal: false,
       };
+    },
+
+    updateCart() {
+        let input = document.getElementById('inputModal');
+        let body = {
+            productId: this.props.product['_id'],
+            quantity: input.value,
+        };
+        body= JSON.stringify(body);
+        fetch(URL + '/carts/' + this.props.cartId + '/productId', {
+            method: 'PATCH',
+            body: body,
+            headers: {
+                'content-type': 'application/json',
+            },
+            mode: 'cors',
+        }).then((response) => {
+
+        });
     },
 
     openEditor() {
@@ -24,6 +46,9 @@ const TicketLine = React.createClass({
 
     closeEditor() {
         let input = document.getElementById('inputModal');
+        if(this.state.quantity !== input.value) {
+            this.updateCart();
+        }
         this.setState({
             quantity: input.value,
             showModal: false,
@@ -75,22 +100,23 @@ const TicketLine = React.createClass({
                             <Modal.Body>
                                 <InputGroup>
                                     <span className="input-group-btn">
-                                        <Button onClick={this.addOne}
-                                                bsStyle="success"
-                                                bsSize="large"
-                                                >
-                                            +
+                                        <Button onClick={this.removeOne}
+                                                bsStyle="danger" bsSize="large">
+                                            -
                                         </Button>
                                     </span>
+
                                     <input id="inputModal"
                                            type="number"
                                            className="form-control input-lg"
                                            defaultValue={this.state.quantity}
                                            />
                                     <span className="input-group-btn">
-                                        <Button onClick={this.removeOne}
-                                                bsStyle="danger" bsSize="large">
-                                            -
+                                        <Button onClick={this.addOne}
+                                                bsStyle="success"
+                                                bsSize="large"
+                                        >
+                                            +
                                         </Button>
                                     </span>
                                 </InputGroup>

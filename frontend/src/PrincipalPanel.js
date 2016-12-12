@@ -5,13 +5,52 @@ import Ticket from './Ticket';
 import Menubar from './Menubar';
 import Auth from './Auth';
 import Login from './Login';
+import SearchField from './SearchField';
 import {Col, Grid, Row} from 'react-bootstrap';
+
+const URL = 'http://localhost:3000';
 
 const PrincipalPanel = React.createClass({
     /*TODO retrieve categories and create buttons fom them*/
     getInitialState() {
+        this.newCart();
         return ({
-            isLogged: Auth.isUserAuthenticated(),
+            //TODO: change this
+            //isLogged: Auth.isUserAuthenticated(),
+            isLogged: true,
+            cartId: '',
+        });
+    },
+
+    onNewProduct() {
+        this.refs.ticket.loadProducts();
+    },
+
+    newCart() {
+        fetch(URL + '/carts/new', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            mode: 'cors',
+        }).then((response) => {
+            let contentType = response.headers.get('content-type');
+            if(contentType && contentType.indexOf('application/json') !== -1) {
+                response.json().then((json) => {
+                    if(response.ok) {
+                        this.setState(
+                            {
+                                isLogged: this.state.isLogged,
+                                cartId: json['cartId'],
+                            });
+                        this.refs.ticket.loadProducts();
+                    } else {
+                        console.log(json);
+                    }
+                });
+            }
+        }).catch((error) => {
+            console.log(error);
         });
     },
 
@@ -20,24 +59,28 @@ const PrincipalPanel = React.createClass({
     },
 
     render() {
-        let list = [];
-        list.push({productName: 'Moules', price: '1.5'});
-        list.push({productName: 'Frites', price: '1250'});
-        
         if(this.state.isLogged) {
         return (
             <div>
                 <Grid fluid>
                     <Row>
-                        <Col md={12} xs={12}>
+                        <Col >
                             <Menubar
-                                callback={this.loggedOutCallback.bind(this)}/>
+                                callback={this.loggedOutCallback}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4} xs={12}>
+                            <SearchField cartId={this.state.cartId}
+                                addProductCallback={this.onNewProduct}/>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={4} xs={12}>
                             <Ticket
-                                ticketList={list} />
+                                ref='ticket'
+                                cartId={this.state.cartId}
+                                newCartCallBack={this.newCart}/>
                         </Col>
                         <Col md={8} xs={12}>
                             <div >
