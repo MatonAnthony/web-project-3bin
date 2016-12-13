@@ -31,7 +31,6 @@ const paymentSchema = new Schema({
     amount: Number,
     moneyReceived: Number,
     change: Number,
-    transactionNumber: Number,
 });
 
 const payment = mongoose.model('Payments', paymentSchema);

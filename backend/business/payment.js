@@ -11,7 +11,6 @@ exports.register = (futurePayment) => {
         amount: futurePayment.amount,
         moneyReceived: futurePayment.moneyReceived,
         change: futurePayment.change,
-        transactionNumber: futurePayment.transactionNumber,
     });
     return payment.save();
 };

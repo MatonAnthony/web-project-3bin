@@ -8,7 +8,6 @@ router.post('/new', (req, res) => {
     req.checkBody('amount').isNumeric();
     req.checkBody('moneyReceived').isNumeric();
     req.checkBody('change').isNumeric();
-    req.checkBody('transactionNumber').isNumeric();
 
     let errors = req.validationErrors();
 
@@ -19,7 +18,6 @@ router.post('/new', (req, res) => {
             amount: req.body.amount,
             moneyReceived: req.body.moneyReceived,
             change: req.body.change,
-            transactionNumber: req.body.transactionNumber,
         };
 
         payment.register(futurePayment).then((payment) => {

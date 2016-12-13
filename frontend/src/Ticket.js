@@ -1,5 +1,6 @@
 import React from 'react';
-import {Panel, Table, Button} from 'react-bootstrap';
+import {Panel, Table, InputGroup, Button, FormGroup, FormControl,
+     Modal} from 'react-bootstrap';
 import TicketLine from './TicketLine';
 import './Ticket.css';
 
@@ -10,6 +11,9 @@ const Ticket = React.createClass({
     getInitialState() {
         return {
             ticketList: [],
+            showModal: false,
+            totalPrice: 0,
+            priceList: [],
         };
     },
 
@@ -18,8 +22,21 @@ const Ticket = React.createClass({
         cartId: React.PropTypes.string.isRequired,
     },
 
-    initiatePayment() {
-        //TODO : initiate the payment process
+    changeLinePrice(productId, total) {
+        let tempList = this.state.priceList;
+        let tempTotal = 0;
+        tempList[productId] = total;
+
+        for (let key in tempList) {
+            if ({}.hasOwnProperty.call(tempList, key)) {
+                tempTotal += tempList[key];
+            }
+        }
+
+        this.setState({
+            totalPrice: tempTotal,
+            priceList: tempList,
+        });
     },
 
     loadProducts() {
@@ -54,13 +71,65 @@ const Ticket = React.createClass({
         });
     },
 
+    openEditor() {
+        if(this.state.totalPrice !== 0) {
+            this.setState({
+                showModal: true,
+            });
+        }
+    },
+
+    closeEditor() {
+        let moneyReceived = document.getElementById('moneyReceivedInput');
+        let change = moneyReceived.value - this.state.totalPrice;
+        if(change < 0) {
+            change = 0;
+        }
+        let body = {
+            amount: this.state.totalPrice,
+            moneyReceived: moneyReceived.value,
+            change: change,
+        };
+        body = JSON.stringify(body);
+        fetch(URL + '/payments/new', {
+            method: 'POST',
+            body: body,
+            headers: {
+                'content-type': 'application/json',
+            },
+            mode: 'cors',
+        }).then((response) => {
+            let contentType = response.headers.get('content-type');
+            if(contentType && contentType.indexOf('application/json') !== -1) {
+                response.json().then((json) => {
+                    let ticketId = json._id;
+                    console.log(ticketId);
+                    //TODO : Generate ticket
+                });
+            }
+        });
+        this.setState({
+            totalPrice: 0,
+            priceList: [],
+            showModal: false,
+        });
+        this.props.newCartCallBack();
+    },
+
+    closeNoChange() {
+        this.setState({
+            showModal: false,
+        });
+    },
+
     render() {
         let list = [];
         if (this.state.ticketList != null) {
             this.state.ticketList.forEach((element, index) => {
                 list.push(<TicketLine key={index}
                             product={this.state.ticketList[index]}
-                            cartId={this.props.cartId}/>);
+                            cartId={this.props.cartId}
+                            getPriceCallBack={this.changeLinePrice}/>);
             });
         }
 
@@ -79,10 +148,17 @@ const Ticket = React.createClass({
                         {list}
                     </tbody>
                 </Table>
+                <p>
+                    <InputGroup>
+
+                    </InputGroup>
+                    Total : {this.state.totalPrice}€
+
+                </p>
                 <Panel>
                     <Button bsStyle="success" bsSize="large"
                             className="ticket-button"
-                            onClick={this.initiatePayment}>
+                            onClick={this.openEditor}>
                         Pay
                     </Button>
                     <Button className="ticket-align-right ticket-button"
@@ -91,6 +167,36 @@ const Ticket = React.createClass({
                         Clear
                     </Button>
                 </Panel>
+                <Modal show={this.state.showModal} bsSize="sm">
+                    <Modal.Header closeButton
+                                  onHide={this.closeNoChange}>
+                        <Modal.Title>Payment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <FormGroup>
+                            <InputGroup>
+                                <InputGroup.Addon>Total</InputGroup.Addon>
+                                <FormControl type="text"
+                                    value={this.state.totalPrice}
+                                    readOnly="true"/>
+                            </InputGroup>
+                        </FormGroup>
+                        <FormGroup>
+                            <InputGroup>
+                                <InputGroup.Addon>
+                                    Money received
+                                </InputGroup.Addon>
+                                <FormControl type="number"
+                                             id="moneyReceivedInput"/>
+                            </InputGroup>
+                        </FormGroup>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button bsStyle="success" onClick={this.closeEditor}>
+                            Pay
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>);
     },
 });
