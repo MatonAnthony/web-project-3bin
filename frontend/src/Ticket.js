@@ -67,14 +67,6 @@ const Ticket = React.createClass({
         return (
             <div >
                 <Table responsive striped condensed>
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
                     <tbody>
                         {list}
                     </tbody>
