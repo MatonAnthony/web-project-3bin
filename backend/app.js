@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
 const mongoose = require('mongoose');
-const jwt = require('express-jwt');
+//const jwt = require('express-jwt');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -91,9 +91,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*
  * Auth Middleware based on JWT auth
  */
-app.use(jwt({secret: process.env.JWT_SECRET})
+/*app.use(jwt({secret: process.env.JWT_SECRET})
     .unless({path: ['/register', '/login']})
-);
+);*/
 
 app.use(function(err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
