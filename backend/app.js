@@ -1,7 +1,5 @@
 const express = require('express');
 const path = require('path');
-//TODO uncomment after placing the favicon
-//const favicon = require('serve-favicon');
 const winston = require('winston');
 const sentry = require('winston-sentry');
 const raven = require('raven');
@@ -9,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
 const mongoose = require('mongoose');
+const jwt = require('express-jwt');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -88,6 +87,21 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/*
+ * Auth Middleware based on JWT auth
+ */
+app.use(jwt({secret: process.env.JWT_SECRET})
+    .unless({path: ['/register', '/login']})
+);
+
+app.use(function(err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send('invalid token...');
+  } else {
+    next();
+  }
+});
 
 app.use('/', index);
 app.use('/', users);
