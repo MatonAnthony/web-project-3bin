@@ -5,4 +5,4 @@
 
 FROM mongo:latest
 
-VOLUME ["/data/db"]
+# VOLUME ["/data/db"]

@@ -1,0 +1,40 @@
+version: '2'
+services:
+    front:
+        container_name: front
+        build:
+            context: frontend/
+            dockerfile: Dockerfile
+        ports:
+            - "81:9000"
+        links:
+            - "api"
+        environment:
+            - VIRTUAL_HOST=la-caissiere.local
+    api:
+        container_name: api
+        build:
+            context: backend/
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        links:
+            - "mongo"
+        environment:
+            - VIRTUAL_HOST=api.la-caissiere.local
+    mongo:
+        container_name: mongo
+        build:
+            context: database/
+            dockerfile: Dockerfile
+        ports:
+            - "27017:27017"
+
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        container_name: nginx-proxy
+        ports:
+            - "80:80"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+
