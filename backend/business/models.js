@@ -47,9 +47,7 @@ const sale = mongoose.model('Sales', salesSchema);
 const ticketsSchema = new Schema({
     date: Date,
     seller: {type: Schema.Types.ObjectId, ref: 'Users'},
-    products: [
-        {type: Schema.Types.ObjectId, ref: 'Products'},
-    ],
+    cart: {type: Schema.Types.ObjectId, ref: 'Cart'},
     discount: Number,
     tax: Number,
     total: Number,

@@ -15,6 +15,7 @@ const users = require('./routes/users');
 const carts = require('./routes/cart');
 const products = require('./routes/products');
 const payments = require('./routes/payments');
+const tickets = require('./routes/tickets');
 
 
 /**
@@ -93,6 +94,7 @@ app.use('/', users);
 app.use('/carts', carts);
 app.use('/products', products);
 app.use('/payments', payments);
+app.use('/tickets', tickets);
 
 app.use(raven.middleware.express.errorHandler(DSN));
 

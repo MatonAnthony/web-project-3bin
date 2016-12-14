@@ -9,7 +9,7 @@ exports.register = (futureTicket) => {
     let ticket = new models.ticket({
         date: futureTicket.date,
         seller: futureTicket.seller,
-        products: futureTicket.products,
+        cart: futureTicket.cart,
         discount: futureTicket.discount,
         tax: futureTicket.tax,
         total: futureTicket.total,
