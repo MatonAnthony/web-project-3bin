@@ -9,6 +9,7 @@ const TicketLine = React.createClass({
     propTypes: {
         product: React.PropTypes.object.isRequired,
         cartId: React.PropTypes.string.isRequired,
+        getPriceCallBack: React.PropTypes.func.isRequired,
     },
 
     getInitialState() {
@@ -16,6 +17,11 @@ const TicketLine = React.createClass({
          quantity: 1,
          showModal: false,
       };
+    },
+
+    componentWillMount() {
+        this.props.getPriceCallBack(this.props.product['_id'],
+            this.props.product['price']);
     },
 
     updateCart() {
@@ -33,7 +39,8 @@ const TicketLine = React.createClass({
             },
             mode: 'cors',
         }).then((response) => {
-
+            let totalLinePrice = this.state.quantity * this.props.product.price;
+            this.props.getPriceCallBack(this.props.product._id, totalLinePrice);
         });
     },
 
@@ -124,7 +131,7 @@ const TicketLine = React.createClass({
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button onClick={this.closeEditor}>
-                                    Valider
+                                    Edit
                                 </Button>
                             </Modal.Footer>
                         </Modal>
