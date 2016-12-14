@@ -5,9 +5,9 @@ const payment = require('../business/payment');
 const logger = require('winston');
 
 router.post('/new', (req, res) => {
-    req.checkBody('amount').isNumeric();
-    req.checkBody('moneyReceived').isNumeric();
-    req.checkBody('change').isNumeric();
+    req.checkBody('amount').isFloat();
+    req.checkBody('moneyReceived').isFloat();
+    req.checkBody('change').isFloat();
 
     let errors = req.validationErrors();
 
