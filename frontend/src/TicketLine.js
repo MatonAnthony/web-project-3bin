@@ -1,8 +1,9 @@
 import React from 'react';
 import {Button, Modal, InputGroup} from 'react-bootstrap';
+import Api from './Api';
 import './TicketLine.css';
 
-const URL = 'http://localhost:3000';
+const URL = Api.getUrl();
 
 const TicketLine = React.createClass({
 

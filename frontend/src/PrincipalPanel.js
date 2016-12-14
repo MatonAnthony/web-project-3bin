@@ -7,8 +7,9 @@ import Auth from './Auth';
 import Login from './Login';
 import SearchField from './SearchField';
 import {Col, Grid, Row} from 'react-bootstrap';
+import Api from './Api';
 
-const URL = 'http://localhost:3000';
+const URL = Api.getUrl();
 
 const PrincipalPanel = React.createClass({
     /*TODO retrieve categories and create buttons fom them*/

@@ -2,9 +2,10 @@ import React from 'react';
 import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
+import Api from './Api';
 import './Register.css';
 
-const URL = 'http://localhost:3001';
+const URL = Api.getUrl();
 
 const Register = React.createClass({
     getInitialState() {
