@@ -3,12 +3,13 @@ import {Panel, FormGroup, ControlLabel} from 'react-bootstrap';
 import {FormControl, Button} from 'react-bootstrap';
 import CardScanner from './CardScanner';
 import Auth from './Auth';
+import Api from './Api'; 
 import './Login.css';
 
 /*
  * TODO : This is a temporary solution until further discussion
  */
-const URL = 'http://localhost:3000';
+const URL = Api.getUrl();
 
 const Login = React.createClass({
 

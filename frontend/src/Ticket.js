@@ -2,9 +2,10 @@ import React from 'react';
 import {Panel, Table, InputGroup, Button, FormGroup, FormControl,
      Modal} from 'react-bootstrap';
 import TicketLine from './TicketLine';
+import Api from './Api';
 import './Ticket.css';
 
-const URL = 'http://localhost:3000';
+const URL = Api.getUrl();
 
 const Ticket = React.createClass({
 

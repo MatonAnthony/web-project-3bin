@@ -2,8 +2,9 @@ import React from 'react';
 import './SearchField.css';
 import {Button, Glyphicon, FormGroup, InputGroup, FormControl}
     from 'react-bootstrap';
+import Api from './Api';
 
-const URL = 'http://localhost:3000';
+const URL = Api.getUrl();
 
 const SearchField = React.createClass({
 

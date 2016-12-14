@@ -1,8 +1,9 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import Api from './Api';
 import './CategoryPanel.css';
 
-const URL = 'http://localhost:3000';
+const URL = Api.getUrl();
 
 const CategoryPanel = React.createClass({
 
