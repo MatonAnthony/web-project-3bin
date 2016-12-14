@@ -92,7 +92,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Auth Middleware based on JWT auth
  */
 app.use(jwt({secret: process.env.JWT_SECRET})
-    .unless({path: ['/register', '/login']})
+    .unless({path: ['/register', '/login', '/carts/new', '/products/preferred']})
 );
 
 app.use(function(err, req, res, next) {
