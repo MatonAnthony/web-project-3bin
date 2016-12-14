@@ -15,8 +15,18 @@ Dans une autre console :
 ```shell
 cd frontend && npm start
 ```
-Il faut également une base de donnée __MongoDB__ d'installée et de lancée contenant des produits.
-Le fichier dbconfig.init peut être lancé pour entrer quelques produits dans la DB.
+Il faut également une base de donnée __MongoDB__ installée et lancée contenant des produits.
+Le fichier dbconfig.init peut être copié/collé afin d'insérer quelques produits ainsi qu'un utilisateur de test
+( login : projet ; mot de passe: projet).
+
+
+Pour importer les données plus proprement qu'avec un copié/collé, il est possible de lancer la
+commande suivante (nécessite que le mongorestore.exe fasse partie du path,
+sinon rajoutez manuellement le chemin d'accès vers son exécutable dans la commande).
+La commande ci-après nécessite que le serveur MongoDB soit en cours d'exécution. 
+```shell
+mongorestore.exe database/MongoDump
+```
 
 Les différentes variables d'environnement peuvent être configurées via NODE_ENV et le dossier de config.
 
