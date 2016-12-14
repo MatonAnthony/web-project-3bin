@@ -1,67 +1,102 @@
-//Dropping users and tables*/
-use admin;
-db.dropAllUsers();
-db.dropDatabase();
-
-use dbdrago;
-db.dropAllUsers();
-db.dropDatabase();
-
-use dbmartin;
-db.dropAllUsers();
-db.dropDatabase();
-
-use dbantho;
-db.dropAllUsers();
-db.dropDatabase();
-
-use dbprod;
-db.dropAllUsers();
-db.dropDatabase();
-
-//Creating new users and tables
-
-use admin;
-db.createUser({
-user: "ourAdmin",
-pwd: "abc123.258",
-roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+use production;
+db.users.insert({
+    pseudo:projet,
+    password:projet,
+    email:unmail@gmail.com,
+    firstname:Caissiere,
+    lastname:AutreCaisse,
+    accessCardId:265465
 });
 
-use dbdrago
-db.createUser({
-user: "drago",
-pwd: "123456.",
-roles: [ { role: "dbOwner", db: "dbdrago" } ]
-} )
-
-use dbmartin
-db.createUser({
-user: "martin",
-pwd: "123456.",
-roles: [ { role: "dbOwner", db: "dbmartin" } ]
-} )
-
-use dbantho
-db.createUser({
-user: "antho",
-pwd: "123456.",
-roles: [ { role: "dbOwner", db: "dbantho" } ]
-} )
-
-use dbprod
-db.createUser({
-user: "adminProd",
-pwd: "123456.",
-roles: [ {role: "dbOwner", db: "dbprod"} ]
-} )
-
-db.createUser({
-user: "testacc",
-pwd: "123456.",
-roles: [
-{ role: "readWrite", db: "dbdrago"},
-{ role: "readWrite", db: "dbmartin"},
-{ role: "readWrite", db: "dbantho"},
-{ role: "readWrite", db: "dbprod"}]
-})
+use production;
+db.products.insert(
+  {
+    "department": "Clothing",
+    "productName": "Unbranded Soft Tuna",
+    "ean": 70561,
+    "price": "536.00",
+    "tva": 66982,
+    "category": "magnam",
+    "isPreferred": true
+  },
+  {
+    "department": "Health",
+    "productName": "Practical Soft Shirt",
+    "ean": 1281,
+    "price": "111.00",
+    "tva": 89125,
+    "category": "optio",
+    "isPreferred": true
+  },
+  {
+    "department": "Electronics",
+    "productName": "Generic Rubber Hat",
+    "ean": 54424,
+    "price": "443.00",
+    "tva": 16678,
+    "category": "non",
+    "isPreferred": false
+  },
+  {
+    "department": "Beauty",
+    "productName": "Tasty Granite Towels",
+    "ean": 52386,
+    "price": "271.00",
+    "tva": 7161,
+    "category": "eligendi",
+    "isPreferred": true
+  },
+  {
+    "department": "Automotive",
+    "productName": "Refined Steel Salad",
+    "ean": 94411,
+    "price": "62.00",
+    "tva": 46185,
+    "category": "saepe",
+    "isPreferred": false
+  },
+  {
+    "department": "Jewelery",
+    "productName": "Intelligent Rubber Cheese",
+    "ean": 46381,
+    "price": "336.00",
+    "tva": 20221,
+    "category": "dolores",
+    "isPreferred": false
+  },
+  {
+    "department": "Grocery",
+    "productName": "Rustic Concrete Bacon",
+    "ean": 80646,
+    "price": "63.00",
+    "tva": 69580,
+    "category": "provident",
+    "isPreferred": true
+  },
+  {
+    "department": "Clothing",
+    "productName": "Refined Wooden Pizza",
+    "ean": 21234,
+    "price": "920.00",
+    "tva": 3025,
+    "category": "repudiandae",
+    "isPreferred": true
+  },
+  {
+    "department": "Baby",
+    "productName": "Rustic Frozen Chicken",
+    "ean": 3285,
+    "price": "827.00",
+    "tva": 52381,
+    "category": "qui",
+    "isPreferred": true
+  },
+  {
+    "department": "Grocery",
+    "productName": "Small Fresh Fish",
+    "ean": 94530,
+    "price": "47.00",
+    "tva": 33704,
+    "category": "nihil",
+    "isPreferred": false
+  });
