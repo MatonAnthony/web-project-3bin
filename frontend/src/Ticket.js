@@ -83,6 +83,7 @@ const Ticket = React.createClass({
     closeEditor() {
         let moneyReceived = document.getElementById('moneyReceivedInput');
         let change = moneyReceived.value - this.state.totalPrice;
+        let tempTotal = this.state.totalPrice;
         if(change < 0) {
             change = 0;
         }
@@ -103,9 +104,33 @@ const Ticket = React.createClass({
             let contentType = response.headers.get('content-type');
             if(contentType && contentType.indexOf('application/json') !== -1) {
                 response.json().then((json) => {
-                    let ticketId = json._id;
-                    console.log(ticketId);
-                    //TODO : Generate ticket
+                    let paymentId = json._id;
+                    let body = {
+                        date: new Date(),
+                        cart: this.props.cartId,
+                        payment: paymentId,
+                        seller: paymentId,
+                        discount: 0,
+                        tax: 21,
+                        total: tempTotal,
+                    };
+                    body = JSON.stringify(body);
+                    fetch(URL + '/tickets/generateTicket', {
+                        method: 'POST',
+                        body: body,
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        mode: 'cors',
+                    }).then((response) => {
+                        let contentType = response.headers.get('content-type');
+                        if(contentType
+                            && contentType.indexOf('application/json') !== -1) {
+                            response.json().then((json) => {
+                                
+                            });
+                        }
+                    });
                 });
             }
         });
