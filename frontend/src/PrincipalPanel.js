@@ -14,7 +14,9 @@ const PrincipalPanel = React.createClass({
     /*TODO retrieve categories and create buttons fom them*/
     getInitialState() {
         this.newCart();
+        this.loadPreferredProducts();
         return ({
+            preferredProducts: [],
             isLogged: Auth.isUserAuthenticated(),
             cartId: '',
         });
@@ -54,14 +56,51 @@ const PrincipalPanel = React.createClass({
 
     loggedInCallback() {
         this.setState({isLogged: Auth.isUserAuthenticated()});
+        this.newCart();
     },
 
     loggedOutCallback() {
         this.setState({isLogged: Auth.isUserAuthenticated()});
     },
 
+    loadPreferredProducts() {
+        fetch(URL + '/products/preferred', {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+            mode: 'cors',
+        }).then((response) => {
+            let contentType = response.headers.get('content-type');
+            if(contentType && contentType.indexOf('application/json') !== -1) {
+                response.json().then((json) => {
+                    if(response.ok) {
+                       this.setState({
+                            preferredProducts: json,
+                       });
+                    } else {
+                        console.log(json);
+                    }
+                });
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    },
+
     render() {
         if(this.state.isLogged) {
+            let preferredList = [];
+            if(this.state.preferredProducts.length) {
+                this.state.preferredProducts.forEach((entry, index) => {
+                    preferredList.push(<CategoryPanel name={entry.productName}
+                               id={entry._id}
+                               cartId={this.state.cartId}
+                               addProductCallback={this.onNewProduct}
+                               key={index}/>);
+                });
+            }
+
         return (
             <div>
                 <Grid fluid>
@@ -86,22 +125,7 @@ const PrincipalPanel = React.createClass({
                         </Col>
                         <Col md={8} xs={12}>
                             <div >
-                                <CategoryPanel name='Moules'/>
-                                <CategoryPanel name='Bananes'/>
-                                <CategoryPanel name='Frites'/>
-                                <CategoryPanel name='Bièraubeurre'/>
-                                <CategoryPanel name='Dragées'/>
-
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
-                                <CategoryPanel name='Dragées'/>
+                                {preferredList}
                             </div>
                         </Col>
                     </Row>
