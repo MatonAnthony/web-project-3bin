@@ -1,18 +1,19 @@
-use production;
+use production
 db.users.insert({
-    pseudo:projet,
-    password:projet,
-    email:unmail@gmail.com,
-    firstname:Caissiere,
-    lastname:AutreCaisse,
+    pseudo:"projet",
+    password:"$2a$10$OBe5B7.7ELqLpKUVsLLnmOa8ziP0ByNj3r5qQH4l0XzJ.A5VjpsFC",
+    //password= projet
+    email:"unmail@gmail.com",
+    firstname:"Caissiere",
+    lastname:"AutreCaisse",
     accessCardId:265465
-});
+})
 
-use production;
-db.products.insert(
+use production
+db.products.insert([
   {
     "department": "Clothing",
-    "productName": "Unbranded Soft Tuna",
+    "productName": "Tuna",
     "ean": 70561,
     "price": "536.00",
     "tva": 66982,
@@ -21,7 +22,7 @@ db.products.insert(
   },
   {
     "department": "Health",
-    "productName": "Practical Soft Shirt",
+    "productName": "Shirt",
     "ean": 1281,
     "price": "111.00",
     "tva": 89125,
@@ -30,7 +31,7 @@ db.products.insert(
   },
   {
     "department": "Electronics",
-    "productName": "Generic Rubber Hat",
+    "productName": "Rubber",
     "ean": 54424,
     "price": "443.00",
     "tva": 16678,
@@ -39,7 +40,7 @@ db.products.insert(
   },
   {
     "department": "Beauty",
-    "productName": "Tasty Granite Towels",
+    "productName": "Towels",
     "ean": 52386,
     "price": "271.00",
     "tva": 7161,
@@ -48,7 +49,7 @@ db.products.insert(
   },
   {
     "department": "Automotive",
-    "productName": "Refined Steel Salad",
+    "productName": "Salad",
     "ean": 94411,
     "price": "62.00",
     "tva": 46185,
@@ -57,7 +58,7 @@ db.products.insert(
   },
   {
     "department": "Jewelery",
-    "productName": "Intelligent Rubber Cheese",
+    "productName": "Cheese",
     "ean": 46381,
     "price": "336.00",
     "tva": 20221,
@@ -66,7 +67,7 @@ db.products.insert(
   },
   {
     "department": "Grocery",
-    "productName": "Rustic Concrete Bacon",
+    "productName": "Bacon",
     "ean": 80646,
     "price": "63.00",
     "tva": 69580,
@@ -75,7 +76,7 @@ db.products.insert(
   },
   {
     "department": "Clothing",
-    "productName": "Refined Wooden Pizza",
+    "productName": "Pizza",
     "ean": 21234,
     "price": "920.00",
     "tva": 3025,
@@ -84,7 +85,7 @@ db.products.insert(
   },
   {
     "department": "Baby",
-    "productName": "Rustic Frozen Chicken",
+    "productName": "Chicken",
     "ean": 3285,
     "price": "827.00",
     "tva": 52381,
@@ -93,10 +94,10 @@ db.products.insert(
   },
   {
     "department": "Grocery",
-    "productName": "Small Fresh Fish",
+    "productName": "Fish",
     "ean": 94530,
     "price": "47.00",
     "tva": 33704,
     "category": "nihil",
     "isPreferred": false
-  });
+  }])
